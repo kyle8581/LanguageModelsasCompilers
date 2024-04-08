@@ -1,0 +1,24 @@
+def evaluate_boolean_word_problem(input_text):
+    # Step 1: Identify the statements and the question from the input text.
+    statements, question = input_text.split("?")
+    statements = statements.split(". ")
+    print("Statements:", statements)
+    print("Question:", question)
+
+    # Step 2: Initialize a truth dictionary to keep track of who tells the truth and who lies.
+    truth_dict = {}
+
+    # Step 3: Process each statement to update the truth dictionary based on the logic provided.
+    for statement in statements:
+        person1, action, person2 = statement.split(" ")
+        if action == "lies":
+            truth_dict[person1] = not truth_dict[person2]
+        else:
+            truth_dict[person1] = truth_dict[person2]
+        print(f"{person1} says {person2} {action}. {person1} tells the truth: {truth_dict[person1]}")
+
+    # Step 4: Determine the truthfulness of the person in question based on the truth dictionary.
+    person_to_check = question.split(" ")[-2]
+    answer = 'Yes' if truth_dict[person_to_check] else 'No'
+    
+    return answer

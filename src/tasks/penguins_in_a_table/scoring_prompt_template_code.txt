@@ -1,0 +1,6 @@
+{prompt}
+input_text = "{input_text}"
+final_answer = penguins_in_a_table(input_text)
+print("Final answer: "+ final_answer)
+Generate the expected output of the code without any explanation. You don't have to actually run the code and do not care about 'not implemented error'.
+Expected output:

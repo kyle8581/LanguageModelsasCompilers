@@ -1,0 +1,18 @@
+This task involves identifying and counting specific types of objects (fruits or vegetables) from a mixed list. The primary challenge is correctly categorizing each item in the list and then tallying the counts of the desired categories.
+
+Analyzing the Task:
+It needs to keep track of the intermediate counts of the each item in the list, but also needs a free format reasoning to calculate the proper number of item according to the question.
+
+Constructing the Code Prompt:
+1. Extracting Objects from Input: The first step is parsing the input text to create a list of objects with their number.
+
+2. Extracting the Question: Determine what category of items needs to be counted (e.g., fruits, vegetables) from the input text. 
+
+3. Initializing Count Variables: Set up a variable to keep track of the total count of the desired objects.
+
+4. [Variables tracking] Counting Each Object: Go through each object in the list by using 'for loop', count the object according to the question, adds up the object's count to the total count. Following things should be logged with print() function for each intermediate steps:
+- Each item to be counted
+- Count of the each item and an explanation.
+- Intermediate total counts
+
+5. Returning the Total Count: After processing all objects, return the total count as the answer.

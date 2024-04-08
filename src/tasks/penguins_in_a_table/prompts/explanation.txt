@@ -1,0 +1,21 @@
+This task revolves around interpreting and extracting specific pieces of information from structured data presented in tabular format. It focuses on a distinct query related to the attributes (age, height, weight) of individuals (penguins in this case) listed in the table.
+
+Analyzing the Task:
+1. Construct initial table: Because he task gives the initial information in a format of tabluar structure, it is important to construct the initial table to understand it.
+
+2. Processing additional information: There is sometimes additional instruction or information about the table. Check if an additional information exists and update the table.
+
+3. Find Proper answer: Find the correct penguin that the question is asking referring to the updated table.
+
+Constructing the Code Prompt:
+1. Construct initial table: Parse information from the input text and present them in a table.
+
+2. Identifying a modification instruction: Parse instruction of further modification to the table.
+
+3. Updating the info table: If the required modification is exists, update the table according to it. Show the current table and updated table.
+
+4. [Important] Identify question from input text and outputs the reasoning and the proper answer to the question. Use an abstract function like 'derive_answer_with_explanation' which outputs both the reasoning and the correct answer to the question.
+
+5. Choosing correct answer from the options: Identify options and match the result from the Step 4 with the given options.
+
+6. Returning the final answer: Return the final answer.

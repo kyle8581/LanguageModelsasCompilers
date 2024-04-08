@@ -1,0 +1,374 @@
+Generate the code prompt for the last task using the similar style of the example codes. Add enough print() functions following the provided steps  in the provided explanation to output intermediate reasoning steps towards the answer and keep track of important variables. Implement the code prompt as much as you can and describe the logic in code following the provided explanation but do not make a code that is biased toward a single task example instance. For example, do not use hard-coded variables that are obtained from task instances (e.g., using specific name of person in the question). The code prompt must be able to be applied to various instances of same task. When returning the final answer, carefully consider the output format. Especially, for the multiple choice questions, the final answer should be one of the given options. The main function name should be 'solve_temporal_sequences_quiz'. Along with the main function, you may want to define some helper functions that might be helpful for implementing the 'solve_temporal_sequences_quiz'. But you don't have to explicitly implement the helper functions, but just define them with function name and a single-line explanation in comment.
+
+[Example 1]
+Example task instances:
+Alice, Bob, Claire, Dave, and Eve are dancers at a square dance. At the start of a song, they each have a partner: Alice is dancing with Sam, Bob is dancing with Izzi, Claire is dancing with Karl, Dave is dancing with Helga, and Eve is dancing with Ophelia.
+Throughout the song, the dancers often trade partners. First, Bob and Alice switch partners. Then, Alice and Claire switch partners. Then, Alice and Dave switch partners. Then, Alice and Eve switch partners. Finally, Dave and Claire switch partners. At the end of the dance, Claire is dancing with
+Options:
+(A) Sam
+(B) Izzi
+(C) Karl
+(D) Helga
+(E) Ophelia
+
+Alice, Bob, Claire, Dave, and Eve are dancers at a square dance. At the start of a song, they each have a partner: Alice is dancing with Jamie, Bob is dancing with Patrick, Claire is dancing with Karl, Dave is dancing with Helga, and Eve is dancing with Izzi.
+Throughout the song, the dancers often trade partners. First, Claire and Alice switch partners. Then, Alice and Dave switch partners. Then, Alice and Bob switch partners. Then, Bob and Eve switch partners. Finally, Dave and Bob switch partners. At the end of the dance, Eve is dancing with
+Options:
+(A) Jamie
+(B) Patrick
+(C) Karl
+(D) Helga
+(E) Izzi
+
+Alice, Bob, Claire, Dave, and Eve are dancers at a square dance. At the start of a song, they each have a partner: Alice is dancing with Sam, Bob is dancing with Izzi, Claire is dancing with Jamie, Dave is dancing with Ophelia, and Eve is dancing with Patrick.
+Throughout the song, the dancers often trade partners. First, Bob and Dave switch partners. Then, Alice and Eve switch partners. Then, Claire and Dave switch partners. Then, Bob and Eve switch partners. Finally, Alice and Bob switch partners. At the end of the dance, Eve is dancing with
+Options:
+(A) Sam
+(B) Izzi
+(C) Jamie
+(D) Ophelia
+(E) Patrick
+
+Output Format:
+'(A)', '(B)', '(C)', ...\Explanation:
+Explanation:
+This task involves tracking the swapping of objects (like balls or dance partners) between individuals over a series of exchanges. The goal is to determine the final state of these objects after all swaps are completed. This requires careful tracking of each swap and updating the state of each object accordingly.
+
+Analyzing the Task:
+1. Tracking Initial States: The initial state of each object (who has what or who is with whom) needs to be recorded. 
+
+2. Understanding Swap Sequences: The sequence of swaps described in the text must be clearly understood and recorded. Each swap alters the state of the objects.
+
+3. Sequentially Updating States: For each swap, the states of the involved objects must be updated to reflect the exchange.
+
+4. Identifying the Final Query: After all swaps, the question usually asks for the final state of a particular object or individual.
+
+Constructing the Code Prompt:
+1. Identifying Initial State: Parse the input text to determine the initial state of all objects or individuals. This step sets the foundation for the entire process.
+
+2. Parsing Swap Sequences: Extract the sequence of swaps from the input text. Each swap will need to be processed in the order they occur.
+
+3. [Important] Executing Swaps: Iterate over each swap sequence and update the states of the objects or individuals involved in each swap. This is a crucial step that ensures the current state is always up-to-date.
+
+4. Extracting the Final Question: After processing all swaps, identify the specific question asked in the input text.
+
+5. Examining Options: Review and display the options provided in the input text for the final question.
+
+6. Determining the Answer: Based on the final state of the objects or individuals, select the correct option that answers the question.
+
+Code prompt:
+def track_swaps(input_text):
+    # Step 1: Identify Initial State. Begin by identifying and outputing the initial state of all objectives (e.g., who holds which ball or who is dancing with whom) from the input text before any swaps happen.
+    state_dict = find_initial_state(input_text)
+    print(f"Initial state: {state_dict}")
+
+    # Step 2: Identify and output the sequences of swaps from the input text. Each swap should be understood in terms of who exchanges with whom.
+    swap_sequences_list = find_swap_sequences(input_text)
+    print("Swap sequences: ", swap_sequences_list)
+    print("Total iterations: ", len(swap_sequences_list))
+
+    # Step 3: Carry out the swaps. For each swap in swap sequences, sequentially update and output the current status of objectives by exchanging them between the two participants involved in the swap.
+    for i, sequence in enumerate(swap_sequences_list):
+        player1, player2 = extract_player(sequence)
+        state_dict[player1], state_dict[player2] = state_dict[player2], state_dict[player1]
+        print(f"({i}) {sequence} -> {state_dict}")
+
+    Step 4: Understand the Question. After processing all swaps, identify what the question is asking for in the input text and output the question.
+    question = extract_question(input_text)
+    print("Question:", question)
+
+    Step 5: Analyze Options. Examine and output the provided options in the input text.
+    options = input_text.split("\n")[-5:]
+    print("Options:", options)
+
+    Step 6: Determine the Correct Option. Using the updated state after all swaps, determine which option correctly answers the question and output the answer.
+    answer = find_correct_option(question, options, state_dict)
+
+    return answer
+
+[Example 2]
+Example task instances:
+On the nightstand, you see a bunch of objects arranged in a row: a pink pen, a purple notebook, a green keychain, a red cat toy, and a turquoise pair of sunglasses. What is the color of the object directly to the left of the purple object?
+Options:
+(A) red
+(B) orange
+(C) yellow
+(D) green
+(E) blue
+(F) brown
+(G) magenta
+(H) fuchsia
+(I) mauve
+(J) teal
+(K) turquoise
+(L) burgundy
+(M) silver
+(N) gold
+(O) black
+(P) grey
+(Q) purple
+(R) pink
+
+On the floor, you see several things arranged in a row: an orange dog leash, a burgundy mug, a blue keychain, and a purple notebook. What is the color of the thing directly to the left of the blue thing?
+Options:
+(A) red
+(B) orange
+(C) yellow
+(D) green
+(E) blue
+(F) brown
+(G) magenta
+(H) fuchsia
+(I) mauve
+(J) teal
+(K) turquoise
+(L) burgundy
+(M) silver
+(N) gold
+(O) black
+(P) grey
+(Q) purple
+(R) pink
+
+On the table, you see a bunch of objects arranged in a row: a mauve keychain, a silver puzzle, a brown bracelet, a red booklet, a turquoise scrunchiephone charger, and a burgundy necklace. What is the color of the object directly to the left of the turquoise object?
+Options:
+(A) red
+(B) orange
+(C) yellow
+(D) green
+(E) blue
+(F) brown
+(G) magenta
+(H) fuchsia
+(I) mauve
+(J) teal
+(K) turquoise
+(L) burgundy
+(M) silver
+(N) gold
+(O) black
+(P) grey
+(Q) purple
+(R) pink
+
+Output Format:
+'(A)', '(B)', '(C)', ...\Explanation:
+Explanation:
+This task involves solving questions related to the color, count, and spatial arrangement of objects. The challenge lies in accurately parsing the input to extract relevant information and applying logical reasoning to determine the correct answer.
+
+Analyzing the Task:
+1. Object and Property Identification: Identify each object mentioned in the text along with its properties (like color) and position.
+
+2. Understanding the Question: Determine the specific nature of the question – whether it's about identifying the color of an object, counting objects based on a criterion, or understanding their spatial arrangement.
+
+3. Processing According to Question Type: Based on the question's nature, apply the appropriate logical reasoning:
+   - For color identification, locate the specific object and determine its color.
+   - For counting objects, enumerate the objects that meet the specified criteria.
+   - For spatial reasoning, analyze the relative positions of the objects.
+
+4. Matching with Options: Once the analysis is complete, match the result with the given options to find the correct answer.
+
+Constructing the Code Prompt:
+1. Extracting Object Properties: Parse the input text to create a list of objects with their associated properties and positions.
+
+2. Identifying the Question: Extract the specific question from the input text and determine its type (color identification, counting, or spatial reasoning).
+
+3. Listing Options: Extract the list of possible answers provided in the input text.
+
+4. [Important] Processing Logic:
+   - For color identification, find the target object and determine its color.
+   - For counting, iterate over the objects, count those that meet the criteria, and keep track of the count.
+   - For spatial reasoning, arrange the objects as described and deduce the answer based on their positions.
+
+5. Determining the Answer: Match the result of the logical processing with the options to identify the correct answer.
+
+6. Returning the Final Answer: Output the matched option as the final answer to the question.
+
+Code prompt:
+def solve_colored_objects(input_text):
+    # Step 1: Start by identifying the objects along with their associated properties, such as color and spatial positioning from the input text. Show the list of objects.
+    objects_list = extract_objects(input_text)
+    print("Objects and their properties:", objects_list)
+
+    # Step 2: Identify the specific question asked. Determine whether the question is about identifying the color of a specific object, counting objects of a certain color, or reasoning about the spatial arrangement of objects and output the question type.
+    question = extract_question(input_text)
+    print("Question specifics:", question)
+
+    # Step 3: Identify and list up available options provided in the input text.
+    options = input_text.split("\n")[-5:]
+
+    # Step 4: Process according to the question type and show what the question type is:
+    # If the question is about identifying color, identify and ouput the target object the question is asking for the color of. Determine and output its color. 
+    if question['type'] == 'identify_color':
+        print("Question type is = identify_color")
+        print(f"Identifying color for: {question['details']}")
+        target_object = target(objects_list, question['details'])
+        print(f"The question is asking for the color of : {target_object}")
+        pre_answer = extract_color(target_object, question['details'])
+        print(f"Identified color: {pre_answer}")
+
+    # If the question is about counting objects, identify and ouput the objects the question is asking for the number of. Go through each object in the list in steps and count each object. Show the counting steps. Output the final number of objects that meet the specified criteria (e.g., a specific color). 
+    elif question['type'] == 'count_objects':
+        print("Question type is = count_objects")
+        print(f"Counting objects for: {question['details']}")
+        print("Total iterations:", len(objects_list))
+        for i, object in enumerate(objects_list):
+            single_object_count = count_single_object(object, question['details'])
+            intermediate_count += single_object_count
+            print(f"Step ({i}) - {object}: {single_object_count}, Intermediate count: {intermediate_count}")
+        pre_answer = count_objects(objects_list, question['details'])
+        print(f"Objects count: {pre_answer}")
+
+    # If the question is about spatial reasoning, identify and ouput the relative positions the question is asking for. Arrange the objects from left to right and output the order. Determine the relative positions of objects and output the result.
+    elif question['type'] == 'spatial_reasoning':
+        print("Question type is = spatial_reasoning")
+        print(f"Applying spatial reasoning for: {question['details']}")
+        arranged_object = arrange_from_left_to_right(objects_list)
+        print(f"Arraged objects: {arranged_object})
+        pre_answer = spatial_reasoning(arranged_object, question['details'])
+        print(f"Spatial reasoning result: {pre_answer}")
+
+    # Step 5: Recall the identified options and match the outcome of Step 4 (the identified color, the count of objects, or the result of spatial reasoning) with the provided options to determine the correct answer.
+    answer = find_correct_option(pre_answer, options)
+    
+    # Step 6: Return the final answer chosen at Step 5.
+    return answer
+
+[Example 3]
+Example task instances:
+Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: < > < { { { [ ( ) ] } } } > ( { [ { ( [ ] { } ) } ]
+
+Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: { < ( ) > { < > } ( < > ) < ( ) > [ ] < < < < ( ( ) ) < ( ) > > > > > {
+
+Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: [ < [ { ( < ( ( [ < < { } > < < [ ( { < < > > } ) ] > > > ] { } ) ) > ) } ] [ < < { } > ( < < ( ) < ( [ ] ) > > ( ( ) ) > ) > ] > ] < < {
+
+Output Format:
+A string of closing brakets seperated with a space.\Explanation:
+Explanation:
+This task involves completing a sequence of opening and closing parentheses, ensuring that they are correctly matched and the entire sequence is well-formed. This is a classic problem in computer science related to parsing and syntactic analysis, often solved using stack data structures.
+
+Analyzing the Task:
+1. Parentheses Matching: Each opening parenthesis must have a corresponding closing one. The sequence must adhere to the proper nesting and order of parentheses.
+
+2. Tracking Open Parentheses: A stack is ideal for keeping track of open parentheses, as it allows us to process them in a last-in, first-out (LIFO) manner.
+
+3. Completing the Sequence: The goal is to add the appropriate closing parentheses to complete the sequence.
+
+Constructing the Code Prompt:
+1. Initialize a Stack: Use a stack to keep track of opening parentheses. This is crucial for understanding which parentheses are open and need closing.
+
+2. Split and Parse Input: Split the input string into individual characters for easy processing. Identify types of parentheses and their corresponding closing counterparts.
+
+3. [Important] Iterate and Process Characters: Iterate over the input characters. To keep track of the stack, make sure printing out the stack variable using print(). For each character:
+   - If it's an opening parenthesis, push it onto the stack.
+   - If it's a closing parenthesis, check against the last opening parenthesis in the stack for a match, and pop the stack if it matches.
+
+4. Generate Closing Sequence: After processing all input characters, any remaining open parentheses in the stack need to be closed in reverse order (LIFO).
+
+5. Construct and Return the Completed Sequence: Formulate the sequence of closing parentheses to append to the original sequence, ensuring that the overall structure is properly formed.
+
+The stack is a natural choice for this problem, as it efficiently handles the LIFO order required for matching parentheses. Iterating over each character provides a step-by-step approach to build the final sequence. This method is effective and straightforward, ensuring correct matching and order of parentheses. The loop is used for iteration, and the stack manages the open parentheses, making the solution both clear and efficient for this task.
+
+Code prompt:
+def complete_dyck_languages(input_text):
+    # Step 1: Initialize a stack to keep track of open parentheses and split the input text to identify and define all types of open parentheses in the text.
+    stack = []
+    character_list = input_text.split()
+    open_to_close_parenthesis_dict = {"(": ")", "<": ">", "{": "}", "[": "]"}
+    opening_parenthesis = ["(", "<", "{", "["]
+    print(f"Parse characters in the input and initialize a stack to track of open parentheses. \nCurrent stack: {stack}. Parsed characters: {character_list}") 
+    
+    
+    # Step 2: Through iteration over the input characters, identify opening parentheses among the input characters and add them to the stack.
+    print("Check if a character is an opening parenthesis while iterating over the input characters.")
+    for char in character_list:
+        if char in opening_paranthesis: 
+		        print(f"Iteration {i+1}: Current character {char} is an opening parenthesis.")
+            stack.append(char)
+            print(f"Thus, we append {char} to the stack. Current stack after insertion: {', '.join(stack)}")
+        
+        # Step 3: For each open parentheses, find the corresponding closing parentheses and close the open parentheses.
+        else:
+            print(f"Iteration {i+1}: Current character {char} is not an opening parenthesis.\n Thus we delete the last item {stack[-1]} from the stack\n current stack before deletion: {" ".join(stack)} -> updated stack after deletion: {' '.join(stack[::-1]) if stack else 'empty'}")
+            stack.pop() # Remove the last added open parentheses assuming a correct match.
+    
+    # Step 4: Generate the sequence of closing parentheses based on remaining open parentheses in the stack. 
+    print(f"The resulting stack is {' '.join(stack)}.")
+    print(f"We will need to pop out {' '.join(stack[::-1])} one by one in that order.")
+    closing_list = [parentheses_pairs[opening] for opening in stack[::-1]]
+    # Step 5: Output the completed sequence. Generate the input sequence concatenated with the generated closing sequence of parentheses, ensuring a well-formed structure.
+    return " ".join(closing_list) 
+
+[Example 4]
+Example task instances:
+Today, Andrew went to the clothing store. Between what times could they have gone?
+We know that:
+Andrew woke up at 9am.
+David saw Andrew waiting at the train station from 9am to 12pm.
+Emily saw Andrew walking towards the Statue of Liberty from 12pm to 4pm.
+Sarah saw Andrew walking in the garden from 4pm to 8pm.
+Nancy saw Andrew fixing their computer at the electronic store from 9pm to 10pm.
+The clothing store was closed after 10pm.
+Between what times could Andrew have gone to the clothing store?
+Options:
+(A) 9am to 12pm
+(B) 9pm to 10pm
+(C) 12pm to 4pm
+(D) 8pm to 9pm
+
+Today, Sean went to the restaurant. Between what times could they have gone?
+We know that:
+Sean woke up at 5am.
+Emily saw Sean sitting on a rooftop from 5am to 6am.
+Jason saw Sean fixing their computer at the electronic store from 6am to 7am.
+Jennifer saw Sean working out at the gym from 7am to 8am.
+David saw Sean taking photos near the Leaning Tower of Pisa from 9am to 7pm.
+The restaurant was closed after 7pm.
+Between what times could Sean have gone to the restaurant?
+Options:
+(A) 7am to 8am
+(B) 6am to 7am
+(C) 9am to 7pm
+(D) 8am to 9am
+
+Today, Nancy went to the physics classroom. Between what times could they have gone?
+We know that:
+Nancy woke up at 5am.
+James saw Nancy sitting on a rooftop from 5am to 6am.
+Jennifer saw Nancy walking towards the Statue of Liberty from 6am to 8am.
+Elizabeth saw Nancy buying a bike at the bike shop from 8am to 10am.
+Michael saw Nancy attending class at the school from 12pm to 5pm.
+The physics classroom was closed after 5pm.
+Between what times could Nancy have gone to the physics classroom?
+Options:
+(A) 10am to 12pm
+(B) 5am to 6am
+(C) 8am to 10am
+(D) 12pm to 5pm
+
+Output Format:
+'(A)', '(B)', '(C)', ...\Explanation:
+Explanation:
+This task involves determining the possible time intervals during which a person could have visited a specific location based on the given schedule of events throughout the day. The goal is to identify the time frames that are not conflicting with other activities.
+
+Analyzing the Task:
+1. Establishing the Timeline: Understanding the sequence of events and the times at which they occurred is crucial for determining the available time slots.
+
+2. Identifying Conflicting Activities: Recognizing the time intervals during which the person was engaged in other activities that would prevent them from visiting the specified location.
+
+3. Determining Possible Visitation Times: By eliminating conflicting time intervals, the remaining time slots represent the possible visitation times.
+
+Constructing the Code Prompt:
+1. Extracting Event Information: Parse the given schedule of events to extract the times at which each activity occurred. This may involve creating a data structure to store this information.
+
+2. Identifying Conflicting Time Intervals: Determine the time intervals during which the person was occupied with other activities that would prevent them from visiting the specified location.
+
+3. [Important] Calculating Available Time Slots: By subtracting the conflicting time intervals from the total day duration, identify the time frames during which the person could have visited the specified location.
+
+4. Matching with Options: Compare the possible visitation times with the provided options to determine the correct answer.
+
+5. Returning the Correct Option: Return the letter corresponding to the time interval that matches the calculated possible visitation times.
+
+This task involves a logical deduction process based on the given schedule of events to determine the feasible time intervals for visiting the specified location. By systematically analyzing the timeline and eliminating conflicting activities, the correct answer can be identified. The solution should provide a clear and accurate assessment of the available time slots for the visitation.
+
+Code prompt:

@@ -1,0 +1,44 @@
+def evaluate_boolean_word_problem(input_text):
+    # Step 1: Divide the input text into individual statements and the final question. Output each statements.
+    statements = extract_statements(input_text)
+    question = extract_qeustion(input_text)
+    print("Parsed statements:", statements)
+    
+    # Step 2: Create a Truth Map to keep track of the assumed truthfulness of each person mentioned in the statements. No truth values are assigned initially.
+    truth_map = {statement.split()[0]: None for statement in statements}
+    print(f"Initial truth map: {truth_map}")
+
+    # Step 3: [Variables tracking] Analyze Each Statement. For each statement, first output the statement number and the statement. identify the subject person (who makes the statement), the object person (who the statement is about), and the expected truth value (whether the object person is said to tell the truth or lie). Output the current statement under analysis along with the object person and the expected truth value for clarity.
+    for i, statement in enumerate(statements):
+        print(f"({i}): {statement}")
+        speaker, target_person, expected_truth_value_of_target_person = extract_person_and_truth_value(statement) # speaker - says - target_person - expected_truth_value_of_target_person
+
+        print(f"{speaker} says : {target_person} - {expected_truth_value_of_target_person}")
+        print(f"Truth value of {target_person}: {truth_map[target_person]}")
+
+        # Step 4: Update the Truth Map based on the analysis of each statement. If the statement's claim aligns with the current assumption about the object person's truthfulness, mark the subject person as truthful. Otherwise, mark them as untruthful. After each update, print the name of the person being updated, their determined truth value, and the updated truth map to track changes.
+        if truth_map[target_person] == None: # if the statement does not need to be checked
+            print(f"{expected_truth_value_of_target_person} matches {truth_map[target_person]}")
+            truth_map[target_person] = expected_truth_value_of_target_person
+        else:
+            print(f"{expected_truth_value_of_target_person} does not match {truth_map[target_person]}")
+            if truth_map[target_person] == expected_truth_value_of_target_person: # the speaker tells the truth
+                truth_map[speaker] = True
+            else: # the speaker lies
+                truth_map[speaker] = False
+
+        print(f"Person to update: {speaker} - {truth_map[speaker]}")
+
+        print(f"updated truth_map: {truth_map}")
+        print("\n\n")
+    
+    # Step 5: Using the completed truth map, determine the truthfulness of the person in the final question. Output the question for reference before making the determination.
+    print("question:", question)
+    target_person_in_question = extract_target_person_from_question(question)
+    target_truth_value = truth_map[target_person_in_question]
+    print(f"{target_person_in_question}: {target_truth_value})
+
+    # Step 6: Based on the evaluation, output "Yes" if the person in the final question is determined to tell the truth, otherwise output "No".
+    answer = "Yes" if target_truth_value else "No"
+
+    return answer

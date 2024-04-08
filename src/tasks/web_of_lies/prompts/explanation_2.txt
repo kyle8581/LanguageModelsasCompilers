@@ -1,0 +1,17 @@
+This task involves evaluating a series of statements regarding truthfulness and deceit to determine the veracity of a final claim. It is a logical puzzle that requires tracking the assertions about each individual's honesty and then applying this information to deduce a final conclusion.
+
+Analyzing the Task:
+To answer the last person is truthful or not, initializing a truth map and updating it while going through the statements would be a great method. To do this, the variables tracking is needed to check the updates in the truth map while processing the each statement.
+
+Constructing the Code Prompt:
+1. Parsing Statements and Question: First, divide the input text into individual statements and the final question. This requires string manipulation.
+
+2. Creating a Truth Map: Initialize a map to keep track of each person's truthfulness status. Initially, the truthfulness of each individual might be unknown.
+
+3. [Variables tracking] Analyzing Statements: Iterate over each statement to extract the relevant information: who is making the statement, who it is about, and whether it asserts that the second person is truthful or deceitful.
+
+4. Updating the Truth Map: Use the information from each statement to update the truth map. This might involve setting or revising the truth status of one or more individuals.
+
+5. Evaluating the Final Question: Use the information in the truth map to determine the truthfulness of the person in question.
+
+6. Returning the Conclusion: Based on the evaluation, return 'Yes' if the person in the final question is determined to be truthful, or 'No' otherwise.

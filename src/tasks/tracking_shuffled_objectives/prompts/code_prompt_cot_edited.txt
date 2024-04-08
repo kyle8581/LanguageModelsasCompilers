@@ -1,0 +1,28 @@
+def track_swaps(input_text):
+    # Step 1: Identify Initial State. Begin by identifying and outputing the initial state of all objectives (e.g., who holds which ball or who is dancing with whom) from the input text before any swaps happen.
+    state_dict = find_initial_state(input_text)
+    print(f"Initial state: {state_dict}")
+
+    # Step 2: Identify and output the sequences of swaps from the input text. Each swap should be understood in terms of who exchanges with whom.
+    swap_sequences_list = find_swap_sequences(input_text)
+    print("Swap sequences: ", swap_sequences_list)
+    print("Total iterations: ", len(swap_sequences_list))
+
+    # Step 3: Carry out the swaps. For each swap in swap sequences, sequentially update and output the current status of objectives by exchanging them between the two participants involved in the swap.
+    for i, sequence in enumerate(swap_sequences_list):
+        player1, player2 = extract_player(sequence)
+        state_dict[player1], state_dict[player2] = state_dict[player2], state_dict[player1]
+        print(f"({i}) {sequence} -> {state_dict}")
+
+    Step 4: Understand the Question. After processing all swaps, identify what the question is asking for in the input text and output the question.
+    question = extract_question(input_text)
+    print("Question:", question)
+
+    Step 5: Analyze Options. Examine and output the provided options in the input text.
+    options = input_text.split("\n")[-5:]
+    print("Options:", options)
+
+    Step 6: Determine the Correct Option. Using the updated state after all swaps, determine which option correctly answers the question and output the answer.
+    answer = find_correct_option(question, options, state_dict)
+
+    return answer

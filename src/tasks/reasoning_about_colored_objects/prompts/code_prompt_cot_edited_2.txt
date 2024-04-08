@@ -1,0 +1,23 @@
+def solve_colored_objects(input_text):
+    # Step 1: Start by identifying the objects along with their associated properties, such as color and spatial positioning from the input text. Show the list of objects.
+    objects_list = extract_objects(input_text)
+    print("Objects and their properties:", objects_list)
+
+    # Step 2: Identify the specific question asked. Determine whether the question is about identifying the color of a specific object, counting objects of a certain color, or reasoning about the spatial arrangement of objects and output the question type.
+    question = extract_question(input_text)
+    print("Question specifics:", question)
+
+    # Step 3: Identify and list up available options provided in the input text.
+    options = extract_options(input_text)
+
+    # Step 4: [Free format reasoning] Process according to the question type and derive answer.
+    reason, pre_answer = derive_answer_with_explanation(objects_list, question)
+    print(f"Reason for the decision: {reason}")
+    print(f"Thus, the pre-answer is {pre_answer}.")
+
+    # Step 5: Recall the identified options and match the outcome of Step 4 (the identified color, the count of objects, or the result of spatial reasoning) with the provided options to determine the correct answer.
+    print(f"Options:\n{options}")
+    answer = find_correct_option(pre_answer, options)
+    
+    # Step 6: Return the final answer chosen at Step 5.
+    return answer

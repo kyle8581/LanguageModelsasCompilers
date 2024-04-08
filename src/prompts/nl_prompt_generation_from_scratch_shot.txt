@@ -1,0 +1,3 @@
+Generate an explanation, analyzation, and plan to generate code prompt for the last task considering the example task instances. Your plan should show enough intermediate reasoning steps towards the answer. Construct the plan as much as you can and describe the logic specifically. When constructing the plan for the code prompt, actively use 'if else statement' to take different reasoning paths based on the condition, 'loop' to efficiently process the repititive instructions, 'dictionary' to keep track of connections between important variables.
+
+{exemplars}

@@ -1,0 +1,17 @@
+This task involves identifying the geometric shape formed by an SVG path. SVG (Scalable Vector Graphics) is a language for describing two-dimensional graphics in XML. The path element is used to define a path that can consist of lines, curves, arcs, and more. Understanding and interpreting these paths to determine the resulting shape is the challenge.
+
+Analyzing the Task:
+In order to understand the given SVG paths, it is crucial to keep track of the each coordinates, lines, and curves in the SVG paths. Therefore, variables tracking is effective to solve the task. However, after analyzing the given SVG paths, finding attributes and characteristics of the shape could need a really complicated operation. Thus, the free format reasoning is also needed to solve the task.
+
+Constructing the Code Prompt:
+1. Extracting SVG Path Data: The first step involves parsing the input text to extract the SVG path data.
+
+2. Initializing a coordinate map: Create a coordinate map that maps each coordinate with the other connected coordinates 
+
+3. [Variables tracking] Updating the coordinate map: Iterate over the parsed SVG paths by using 'for loop', update the coordinate map referring to the each SVG path. To keep track of the changes in the coordinate map, use 'print()' to print the intermediate changes.
+
+4. Analyzing the characteristics of the shape referring to the coordinate map: According to the coordinate map, make an analysis over the shape.
+
+5. [Free format reasoning] Shape Identification: Identify reasons and the proper shape using the completed coordinates map and the analysis results. Use an abstract function like 'identify_shape_with_explanation' which outputs both the reason and the shape.
+
+6. Matching and Outputting the Answer: Parse the options from the input text, find the corresponding option from the given options, and only output the label of the option as the final answer to the question.

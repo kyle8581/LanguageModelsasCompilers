@@ -1,0 +1,335 @@
+Generate the code prompt for the last task using the similar style of the example codes. Add enough print() functions following the provided steps  in the provided explanation to output intermediate reasoning steps towards the answer and keep track of important variables. Implement the code prompt as much as you can and describe the logic in code following the provided explanation but do not make a code that is biased toward a single task example instance. For example, do not use hard-coded variables that are obtained from task instances (e.g., using specific name of person in the question). The code prompt must be able to be applied to various instances of same task. When returning the final answer, carefully consider the output format. Especially, for the multiple choice questions, the final answer should be one of the given options. The main function name should be 'track_swaps'. Along with the main function, you may want to define some helper functions that might be helpful for implementing the 'track_swaps'. But you don't have to explicitly implement the helper functions, but just define them with function name and a single-line explanation in comment. When constructing the main function, actively use 'if else statement' to take different reasoning paths based on the condition, 'loop' to efficiently process the repititive instructions, 'dictionary' to keep track of connections between important variables, and 'print()' to output enough intermediate reasoning steps towards the answer and keep tracking changes of important variables.
+
+[Example 1]
+Task description:
+Sort a list of words.
+
+Example task instances and the code usage:
+input_text = "marimba retrofit alphabet birmingham philology fashion educate mechanic cantonese fond entourage"
+final_answer = sort_words(input_text)
+print("Final answer:" + final_answer)
+
+input_text = "saul fresco teen chopstick footwork smalley anaplasmosis palisade orthography storey bumble pilate clue ingot fiesta"
+final_answer = sort_words(input_text)
+print("Final answer:" + final_answer)
+
+input_text = "whale nevins puree pusey protein pullman benefice squeamish river improvise"
+final_answer = sort_words(input_text)
+print("Final answer:" + final_answer)
+
+Format of the Final answer:
+A string of words seperated with a space
+
+Explanation:
+This task involves sorting a list of words alphabetically. It is a straightforward task that requires the application of standard sorting techniques.
+
+Analyzing the Task:
+1. Word Extraction: Initially, the words need to be separated from the input text. 
+
+2. Alphabetical Sorting: The core of the task is to sort these words based on their alphabetical order.
+
+3. Returning the Sorted List: The final step is to output the list of words in the sorted order.
+
+Constructing the Code Prompt:
+1. Splitting the Text into Words: First, extract each word from the input text. This can be achieved through string splitting based on spaces.
+
+2. Identifying Starting Letters: Though not strictly necessary for sorting, extracting the first letter of each word can help in understanding how the sorting will proceed.
+
+3. Sorting the Words: Use a standard sorting algorithm or function to sort the words alphabetically with a proper reason.
+
+4. Outputting the Sorted List: Finally, return the list of words in their sorted order.
+
+Code prompt:
+def sort_words(input_text):
+    # Step 1: Split the text into words. Begin by identifying and splitting the input text into individual words. Output each individual words.
+    words = input_text.split()
+    print("Splited words:", words)
+
+    # Step 2: For every word obtained in the previous step, identify and output its starting letter.
+    list_of_first_characters = [word[0] for word in words]
+    print("The first letter:", list_of_first_characters)
+    
+    # Step 3: Sort the words alphabetically. Arrange the words in alphabetical order, based on their starting letter and output the arranged words.
+    reason, sorted_words = sorted_with_explanation(words)
+    print(f"Reason for sorting: {reason}")
+    print("Sorted words:", sorted_words)
+
+    Step 4: Output the sorted list of words as the final answer to the question.
+    return sorted_words
+
+[Example 2]
+Task description:
+Answer questions about a table of penguins and their attributes.
+
+Example task instances and the code usage:
+input_text = "Here is a table where the first line is a header and each subsequent line is a penguin:  name, age, height (cm), weight (kg) Louis, 7, 50, 11 Bernard, 5, 80, 13 Vincent, 9, 60, 11 Gwen, 8, 70, 15  For example: the age of Louis is 7, the weight of Gwen is 15 kg, the height of Bernard is 80 cm.  What is the name of the next to last penguin sorted by alphabetic order?
+Options:
+(A) Louis
+(B) Bernard
+(C) Vincent
+(D) Gwen
+(E) James"
+final_answer = penguins_in_a_table(input_text)
+print("Final answer:" + final_answer)
+
+input_text = "Here is a table where the first line is a header and each subsequent line is a penguin:  name, age, height (cm), weight (kg) Louis, 7, 50, 11 Bernard, 5, 80, 13 Vincent, 9, 60, 11 Gwen, 8, 70, 15  For example: the age of Louis is 7, the weight of Gwen is 15 kg, the height of Bernard is 80 cm.  How many penguins are more than 5 years old and weight more than 12 kg?
+Options:
+(A) 1
+(B) 2
+(C) 3
+(D) 4
+(E) 5"
+final_answer = penguins_in_a_table(input_text)
+print("Final answer:" + final_answer)
+
+input_text = "Here is a table where the first line is a header and each subsequent line is a penguin:  name, age, height (cm), weight (kg) Louis, 7, 50, 11 Bernard, 5, 80, 13 Vincent, 9, 60, 11 Gwen, 8, 70, 15  For example: the age of Louis is 7, the weight of Gwen is 15 kg, the height of Bernard is 80 cm.  And here is a similar table, but listing giraffes:
+name, age, height (cm), weight (kg)
+Jody, 5, 430, 620
+Gladys, 10, 420, 590
+Marian, 2, 310, 410
+Donna, 9, 440, 650
+What is the cumulated age of the penguins and giraffes?
+Options:
+(A) 26
+(B) 29
+(C) 41
+(D) 55
+(E) 67"
+final_answer = penguins_in_a_table(input_text)
+print("Final answer:" + final_answer)
+
+Format of the Final answer:
+'(A)', '(B)', '(C)', ...
+
+Explanation:
+This task revolves around interpreting and extracting specific pieces of information from structured data presented in tabular format. It focuses on a distinct query related to the attributes (age, height, weight) of individuals (penguins in this case) listed in the table.
+
+Analyzing the Task:
+1. Construct initial table: Because he task gives the initial information in a format of tabluar structure, it is important to construct the initial table to understand it.
+
+2. Processing additional information: There is sometimes additional instruction or information about the table. Check if an additional information exists and update the table.
+
+3. Find Proper answer: Find the correct penguin that the question is asking referring to the updated table.
+
+Constructing the Code Prompt:
+1. Construct initial table: Parse information from the input text and present them in a table.
+
+2. Identifying a modification instruction: Parse instruction of further modification to the table.
+
+3. Updating the info table: If the required modification is exists, update the table according to it. Show the current table and updated table.
+
+4. [Important] Identify question from input text and outputs the reasoning and the proper answer to the question. Use an abstract function like 'derive_answer_with_explanation' which outputs both the reasoning and the correct answer to the question.
+
+5. Choosing correct answer from the options: Identify options and match the result from the Step 4 with the given options.
+
+6. Returning the final answer: Return the final answer.
+
+Code prompt:
+def penguins_in_a_table(input_text):
+    # Step 1: Parse information from the input text and present them in a table.
+    penguin_info_table = make_table(input_text)
+    print("The following is a table containing information about each penguin:\n", penguin_info_table)
+
+    # Step 2: Parse instruction of further modification to the table.
+    required_modification_to_table = identify_required_modification(input_text)
+    print(f"The instruction we must follow before answering the question is: {required_modification_to_table}")
+
+    # Step 3: If the required modification is exists, update the table according to it. Show the current table and updated table.
+    if required_modification_to_table != None:
+        print("Update the current table upon the further modification.")
+        print(f"Current table: {penguin_info_table}")
+        penguin_info_table = penguin_info_table.processing(required_modification_to_table)
+        print(f"Updated table: {required_modification_to_table}")
+    
+    # Step 4: Identify question from input text and outputs the reasoning and the proper answer to the question.
+    question = identify_question(input_text)
+    print(f"The question is: {question}")
+    reason, pre_answer = derive_answer_with_explanation(penguin_info_table, question)
+    print(f"Reason for the decision: {reason}")
+    print(f"Therefore, the answer is: {pre_answer}")
+
+    # Step 5: Identify options and match the result from the Step 4 with the given options.
+    options = extract_options(input_text)
+    print("The answer options are:\n", options)
+    answer = None
+    for option in options:
+        if pre_answer in option:
+            answer = option[:3]
+            break
+    
+    # Step 6: Return the final answer.
+    return answer
+
+[Example 3]
+Task description:
+Name geometric shapes from their SVG paths.
+
+Example task instances and the code usage:
+input_text = "This SVG path element <path d="M 12.89,87.25 A 28.33,28.33 124.93 1,0 45.33,40.79 A 28.33,28.33 124.93 1,0 12.89,87.25"/> draws a
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle
+(K) ellipse"
+final_answer = recognize_shape_from_svg(input_text)
+print("Final answer:" + final_answer)
+
+input_text = "This SVG path element <path d="M 41.00,42.00 L 37.00,32.00 L 41.00,30.00 L 45.00,32.00 L 41.00,42.00"/> draws a
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle"
+final_answer = recognize_shape_from_svg(input_text)
+print("Final answer:" + final_answer)
+
+input_text = "This SVG path element <path d="M 68.00,36.00 L 61.00,80.00"/> draws a
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle"
+final_answer = recognize_shape_from_svg(input_text)
+print("Final answer:" + final_answer)
+
+Format of the Final answer:
+'(A)', '(B)', '(C)', ...
+
+Explanation:
+This task involves identifying the geometric shape formed by an SVG path. SVG (Scalable Vector Graphics) is a language for describing two-dimensional graphics in XML. The path element is used to define a path that can consist of lines, curves, arcs, and more. Understanding and interpreting these paths to determine the resulting shape is the challenge.
+
+Analyzing the Task:
+1. Interpreting SVG Path Commands: Understanding the "M" (moveto) and "L" (lineto) commands in SVG is essential. These commands dictate the starting point and subsequent points of the shape.
+
+2. Analyze the SVG Path Commands: By generating a detailed explanation on the Path, the code should generate an analysis of the shape of the path.
+
+3. Advanced Geometry Analysis: For complex shapes, more sophisticated geometric analysis might be needed, such as calculating side lengths or angles.
+
+Constructing the Code Prompt:
+1. Extracting SVG Path Data: The first step involves parsing the input text to extract the SVG path data.
+
+2. Initializing a coordinate map: Create a coordinate map that maps each coordinate with the other connected coordinates 
+
+3. Updating the coordinate map: Iterate over the parsed SVG paths, update the coordinate map referring to the each SVG path.
+
+4. Analyzing the characteristics of the shape referring to the coordinate map: According to the coordinate map, make an analysis over the shape.
+
+5. [important] Shape Identification: Identify reasons and the proper shape using the completed coordinates map and the analysis results. Use an abstract function like 'identify_shape_with_explanation' which outputs both the reason and the shape.
+
+6. Matching and Outputting the Answer: Parse the options from the input text, find the corresponding option from the given options, and only output the label of the option as the final answer to the question.
+
+Code prompt:
+def recognize_shape_from_svg(input_text):
+		# Step 1: Get the SVG path data from the input text and generate the extracted SVG path.
+    paths = parse_path(input_text)
+    print("SVG paths:\n ", paths)
+		
+		# Step 2: Initialize a coordinate map that maps each coordinate with the other connected coordinates and the connection type.
+    coordinate_map = dict()
+
+    # Step 3: Update the coordinate map referring to the each SVG path.
+    for i, path in enumerate(paths):
+      coordinate_map = update_coordinate_map(coordinate_map, path)
+      print(f"Step {i} - path: {path}, updated coordinate map: {coordinate_map}")
+
+		# Step 4: Conduct calculation to analyze each characteristic of the shape.
+    analysis_results_dict = analyze_characteristics(coordinate_map)
+    print(f"Anlysis results: {analysis_results_dict}")
+
+		# Step 5: Identify a geometric shape with reasons using the completed coordinates map and the analysis results.
+    reason_for_the_decision, name_of_the_shape = identify_shape_with_explanation(coordinate_map, analysis_results_dict)
+    print(f"Reason for the decision: {reason_for_the_decision}")
+    print(f"Thus, the shape of the path is {name_of_the_shape}.")
+
+		# Step 6: Find the corresponding option from the given options and only output the label of the option as the final answer to the question.
+    options = parse_options(input_text)
+    print(f"Options: {options}")
+    answer = None
+    for option in options:
+      if name_of_the_shape in option:
+        answer = option[:3]
+    
+    return answer
+
+[Example 4]
+Task description:
+A task requiring determining the final positions of a set of objects given their initial positions and a description of a sequence of swaps.
+
+Example task instances and the code usage:
+input_text = "Alice, Bob, Claire, Dave, and Eve are friends and avid readers who occasionally trade books. At the start of the semester, they each buy one new book: Alice gets The Great Gatsby, Bob gets The Odyssey, Claire gets The Fellowship of the Ring, Dave gets Moby Dick, and Eve gets Lolita.
+As the semester proceeds, they start trading around the new books. First, Alice and Bob swap books. Then, Eve and Bob swap books. Then, Bob and Claire swap books. Then, Alice and Claire swap books. Finally, Dave and Claire swap books. At the end of the semester, Dave has
+Options:
+(A) The Great Gatsby
+(B) The Odyssey
+(C) The Fellowship of the Ring
+(D) Moby Dick
+(E) Lolita"
+final_answer = track_swaps(input_text)
+print("Final answer:" + final_answer)
+
+input_text = "Alice, Bob, Claire, Dave, and Eve are playing a game. At the start of the game, they are each holding a ball: Alice has a blue ball, Bob has a green ball, Claire has a yellow ball, Dave has a brown ball, and Eve has a black ball.
+As the game progresses, pairs of players trade balls. First, Claire and Bob swap balls. Then, Alice and Claire swap balls. Then, Claire and Bob swap balls. Then, Alice and Dave swap balls. Finally, Dave and Eve swap balls. At the end of the game, Dave has the
+Options:
+(A) blue ball
+(B) green ball
+(C) yellow ball
+(D) brown ball
+(E) black ball"
+final_answer = track_swaps(input_text)
+print("Final answer:" + final_answer)
+
+input_text = "Alice, Bob, Claire, Dave, and Eve are on the same team in a soccer match. At the start of the match, they are each assigned to a position: Alice is playing right winger, Bob is playing goalkeeper, Claire is playing benchwarmer, Dave is playing center midfielder, and Eve is playing left midfielder.
+As the game progresses, pairs of players occasionally swap positions. First, Claire and Eve trade positions. Then, Claire and Alice trade positions. Then, Alice and Dave trade positions. Then, Bob and Eve trade positions. Finally, Alice and Claire trade positions. At the end of the match, Dave is playing
+Options:
+(A) right winger
+(B) goalkeeper
+(C) benchwarmer
+(D) center midfielder
+(E) left midfielder"
+final_answer = track_swaps(input_text)
+print("Final answer:" + final_answer)
+
+Format of the Final answer:
+'(A)', '(B)', '(C)', ...
+
+Explanation:
+This task involves tracking the positions or gifts of individuals as they swap with each other in a sequence of exchanges. The challenge is to keep track of the swaps accurately and determine the final position or gift of a specific individual at the end of the sequence.
+
+Analyzing the Task:
+1. Initial Assignments: Understanding the starting positions or gifts of each individual is crucial for tracking the swaps accurately.
+
+2. Pairwise Swaps: Identifying the pairs of individuals who swap positions or gifts at each step in the sequence.
+
+3. Tracking Changes: Keeping a record of the swaps and updating the positions or gifts of individuals accordingly.
+
+Constructing the Code Prompt:
+1. Initialize Positions or Gifts: Set up a dictionary mapping each individual to their initial position or gift.
+
+2. Define Swap Pairs: Create a list of tuples representing the pairs of individuals who swap positions or gifts at each step.
+
+3. [Important] Process Swaps: Iterate over the swap pairs, update the positions or gifts of the individuals involved in each swap. Use an if-else statement to handle different swap scenarios.
+
+4. Determine the Final Position or Gift: After processing all swaps, identify the final position or gift of the specified individual.
+
+5. Match and Output the Answer: Parse the options from the input text, find the corresponding option from the given options, and only output the label of the option as the final answer to the question.
+
+Code prompt:

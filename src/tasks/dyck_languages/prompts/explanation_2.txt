@@ -1,0 +1,15 @@
+This task involves completing a sequence of opening and closing parentheses, ensuring that they are correctly matched and the entire sequence is well-formed. This is a classic problem in computer science related to parsing and syntactic analysis, often solved using stack data structures.
+
+Analyzing the Task:
+In order to find unclosed parentheses, tracking the opening and closing parentheses is really important. Therefore, the variables tracking is an effective way to solve the task.
+
+Constructing the Code Prompt:
+1. Initialize a Stack and Split Input: Use a stack to keep track of opening parentheses. This is crucial for understanding which parentheses are open and need closing. Split the input string into individual characters for easy processing. Identify types of parentheses and their corresponding closing counterparts.
+
+2. [Variables tracking] Iterate and Process Characters: Iterate over the input characters by using 'for loop'. To keep track of the stack, make sure printing out the stack variable using print(). For each character:
+   - If it's an opening parenthesis, push it onto the stack.
+   - If it's a closing parenthesis, check against the last opening parenthesis in the stack for a match, and pop the stack if it matches.
+
+3. Generate Closing Sequence: After processing all input characters, any remaining open parentheses in the stack need to be closed in reverse order (LIFO).
+
+4. Return the Required Closing Parentheses Sequence: Formulate the sequence of closing parentheses seperated with a space and return it as an answer.

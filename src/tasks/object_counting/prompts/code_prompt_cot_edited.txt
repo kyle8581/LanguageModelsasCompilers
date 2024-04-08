@@ -1,0 +1,20 @@
+def count_objects(input_text):
+    # Step 1: Identify and list all objects and their number from the input text. Output the listed objects.
+    objects_list = extract_objects(input_text)
+    print("All objects:", objects_list)
+
+    # Step 2: Identify and show the specific question asked from the input text.
+    qustion = extract_question(input_text)
+    print("question:", question)
+
+    # Step 3: Initialize the total count by setting it to 0.
+    total_count = 0
+
+    # Step 4: Go through each object in the list in steps, count the object according to the question, adds up the object's count to the total count, and show the count and intermediate count.
+    for i, object in enumerate(objects_list):
+        single_object_count = count_single_object(object)
+        total_count += single_object_count
+        print(f"Step ({i}) - {object}: {single_object_count}, Intermediate count: {total_count}")
+
+    # Step 5: Output the final number. After going through all objects, output the total number as the answer to the question.
+    return total_count

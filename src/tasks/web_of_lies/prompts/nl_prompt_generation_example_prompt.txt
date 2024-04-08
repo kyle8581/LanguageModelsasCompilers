@@ -1,0 +1,136 @@
+Generate an explanation, analyzation, and plan to generate code prompt for the last task considering the example task instances. Your plan should show enough intermediate reasoning steps towards the answer. Construct the plan as much as you can and describe the logic specifically. When constructing the plan for the code prompt, actively use 'if else statement' to take different reasoning paths based on the condition, 'loop' to efficiently process the repititive instructions, 'dictionary' to keep track of connections between important variables.
+
+[Example 1]
+Example task instances:
+I have a cat, and a fish. How many animals do I have?
+
+I have a head of broccoli, a carrot, a potato, a yam, and a cauliflower. How many vegetables do I have?
+
+I have a microwave, and a bed. How many objects do I have?
+
+Output Format:
+A positive integer
+
+Explanation:
+This task involves identifying and counting specific types of objects (fruits or vegetables) from a mixed list. The primary challenge is correctly categorizing each item in the list and then tallying the counts of the desired categories.
+
+Analyzing the Task:
+1. Object Categorization: Determining whether each item in the list is a fruit, a vegetable, or neither. This requires knowledge of common fruits and vegetables.
+
+2. Counting Objects: Accurately counting the number of items in each category. This may involve handling singular and plural forms, as well as numerical phrases (e.g., "two peaches").
+
+3. Handling Varied Input: The input text may vary in format and content, requiring flexible parsing to extract the necessary information.
+
+Constructing the Code Prompt:
+1. Extracting Objects from Input: The first step is parsing the input text to create a list of objects. This requires string manipulation and possibly natural language processing techniques.
+
+2. Extracting the Question: Determine what category of items needs to be counted (e.g., fruits, vegetables) from the input text. 
+
+3. Initializing Count Variables: Set up a variable to keep track of the total count of the desired objects.
+
+4. [Important] Counting Each Object: Iterate over each object, determine if it belongs to the desired category (fruit or vegetable), and count it. Intermeditate count results shoud be logged with print() function. This involves:
+   - Identifying singular and plural forms.
+   - Recognizing and handling numerical phrases.
+   - Keeping a running total of the count.
+
+5. Returning the Total Count: After processing all objects, return the total count as the answer.
+
+[Example 2]
+Example task instances:
+Sort the following words alphabetically: List: pewter gross gujarati cortland diffusible nomograph stag broadcast galvanometer transition incestuous sketchbook scout larynx
+
+Sort the following words alphabetically: List: portsmouth impalpable portrait gouda brainy succumb fatuous hoof lisbon erudite malaria enigma isaacson cony stronghold servomechanism
+
+Sort the following words alphabetically: List: catawba almagest transfusable milt photolysis limpid gnome archenemy sagging councilwomen decrement jungian
+
+Output Format:
+A string of words seperated with a space
+
+Explanation:
+This task involves sorting a list of words alphabetically. It is a straightforward task that requires the application of standard sorting techniques.
+
+Analyzing the Task:
+1. Word Extraction: Initially, the words need to be separated from the input text. 
+
+2. Alphabetical Sorting: The core of the task is to sort these words based on their alphabetical order.
+
+3. Returning the Sorted List: The final step is to output the list of words in the sorted order.
+
+Constructing the Code Prompt:
+1. Splitting the Text into Words: First, extract each word from the input text. This can be achieved through string splitting based on spaces.
+
+2. Identifying Starting Letters: Though not strictly necessary for sorting, extracting the first letter of each word can help in understanding how the sorting will proceed.
+
+3. Sorting the Words: Use a standard sorting algorithm or function to sort the words alphabetically. In most programming languages, there are built-in functions that can handle this step efficiently.
+
+4. Outputting the Sorted List: Finally, return the list of words in their sorted order.
+
+[Example 3]
+Example task instances:
+Alice, Bob, Claire, Dave, and Eve are friends and avid readers who occasionally trade books. At the start of the semester, they each buy one new book: Alice gets The Great Gatsby, Bob gets Frankenstein, Claire gets Moby Dick, Dave gets The Fellowship of the Ring, and Eve gets Catch-22.
+As the semester proceeds, they start trading around the new books. First, Alice and Bob swap books. Then, Dave and Eve swap books. Then, Eve and Alice swap books. Then, Dave and Eve swap books. Finally, Claire and Dave swap books. At the end of the semester, Alice has
+Options:
+(A) The Great Gatsby
+(B) Frankenstein
+(C) Moby Dick
+(D) The Fellowship of the Ring
+(E) Catch-22
+
+Alice, Bob, Claire, Dave, and Eve are playing a game. At the start of the game, they are each holding a ball: Alice has a black ball, Bob has a brown ball, Claire has a blue ball, Dave has a green ball, and Eve has a yellow ball.
+As the game progresses, pairs of players trade balls. First, Eve and Claire swap balls. Then, Bob and Dave swap balls. Then, Eve and Alice swap balls. Then, Claire and Bob swap balls. Finally, Alice and Eve swap balls. At the end of the game, Claire has the
+Options:
+(A) black ball
+(B) brown ball
+(C) blue ball
+(D) green ball
+(E) yellow ball
+
+Alice, Bob, Claire, Dave, and Eve are playing a game. At the start of the game, they are each holding a ball: Alice has a brown ball, Bob has a black ball, Claire has a red ball, Dave has a pink ball, and Eve has a blue ball.
+As the game progresses, pairs of players trade balls. First, Claire and Bob swap balls. Then, Claire and Eve swap balls. Then, Bob and Claire swap balls. Then, Dave and Claire swap balls. Finally, Alice and Dave swap balls. At the end of the game, Eve has the
+Options:
+(A) brown ball
+(B) black ball
+(C) red ball
+(D) pink ball
+(E) blue ball
+
+Output Format:
+'(A)', '(B)', '(C)', ...
+
+Explanation:
+This task involves tracking the swapping of objects (like balls or dance partners) between individuals over a series of exchanges. The goal is to determine the final state of these objects after all swaps are completed. This requires careful tracking of each swap and updating the state of each object accordingly.
+
+Analyzing the Task:
+1. Tracking Initial States: The initial state of each object (who has what or who is with whom) needs to be recorded. 
+
+2. Understanding Swap Sequences: The sequence of swaps described in the text must be clearly understood and recorded. Each swap alters the state of the objects.
+
+3. Sequentially Updating States: For each swap, the states of the involved objects must be updated to reflect the exchange.
+
+4. Identifying the Final Query: After all swaps, the question usually asks for the final state of a particular object or individual.
+
+Constructing the Code Prompt:
+1. Identifying Initial State: Parse the input text to determine the initial state of all objects or individuals. This step sets the foundation for the entire process.
+
+2. Parsing Swap Sequences: Extract the sequence of swaps from the input text. Each swap will need to be processed in the order they occur.
+
+3. [Important] Executing Swaps: Iterate over each swap sequence and update the states of the objects or individuals involved in each swap. This is a crucial step that ensures the current state is always up-to-date.
+
+4. Extracting the Final Question: After processing all swaps, identify the specific question asked in the input text.
+
+5. Examining Options: Review and display the options provided in the input text for the final question.
+
+6. Determining the Answer: Based on the final state of the objects or individuals, select the correct option that answers the question.
+
+[Example 4]
+Example task instances:
+Question: Delbert lies. Shalonda says Delbert tells the truth. Tamika says Shalonda lies. Sal says Tamika lies. Helene says Sal lies. Does Helene tell the truth?
+
+Question: Delfina lies. Leda says Delfina lies. Fidel says Leda lies. Sal says Fidel tells the truth. Andree says Sal lies. Does Andree tell the truth?
+
+Question: Willian lies. Raymond says Willian tells the truth. Rashida says Raymond lies. Gwenn says Rashida lies. Ka says Gwenn lies. Does Ka tell the truth?
+
+Output Format:
+'Yes' or 'No'
+
+Explanation:

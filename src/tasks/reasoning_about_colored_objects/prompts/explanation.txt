@@ -1,0 +1,30 @@
+Explanation:
+This task involves solving questions related to the color, count, and spatial arrangement of objects. The challenge lies in accurately parsing the input to extract relevant information and applying logical reasoning to determine the correct answer.
+
+Analyzing the Task:
+1. Object and Property Identification: Identify each object mentioned in the text along with its properties (like color) and position.
+
+2. Understanding the Question: Determine the specific nature of the question – whether it's about identifying the color of an object, counting objects based on a criterion, or understanding their spatial arrangement.
+
+3. Processing According to Question Type: Based on the question's nature, apply the appropriate logical reasoning:
+   - For color identification, locate the specific object and determine its color.
+   - For counting objects, enumerate the objects that meet the specified criteria.
+   - For spatial reasoning, analyze the relative positions of the objects.
+
+4. Matching with Options: Once the analysis is complete, match the result with the given options to find the correct answer.
+
+Constructing the Code Prompt:
+1. Extracting Object Properties: Parse the input text to create a list of objects with their associated properties and positions.
+
+2. Identifying the Question: Extract the specific question from the input text and determine its type (color identification, counting, or spatial reasoning).
+
+3. Listing Options: Extract the list of possible answers provided in the input text.
+
+4. [Important] Processing Logic:
+   - For color identification, find the target object and determine its color.
+   - For counting, iterate over the objects, count those that meet the criteria, and keep track of the count.
+   - For spatial reasoning, arrange the objects as described and deduce the answer based on their positions.
+
+5. Determining the Answer: Match the result of the logical processing with the options to identify the correct answer.
+
+6. Returning the Final Answer: Output the matched option as the final answer to the question.

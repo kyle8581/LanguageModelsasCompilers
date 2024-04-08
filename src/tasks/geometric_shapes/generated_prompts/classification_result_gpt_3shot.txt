@@ -1,0 +1,1 @@
+For these tasks, the key is to analyze the SVG path elements and identify the shape that is being drawn. This requires a more structured approach to track the coordinates and lines in the path element, making the variables tracking strategy more effective. So the answer is Variables tracking.

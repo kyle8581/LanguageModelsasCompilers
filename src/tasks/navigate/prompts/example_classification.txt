@@ -1,0 +1,18 @@
+Example task instances:
+Q: If you follow these instructions, do you return to the starting point? Turn left. Turn around. Turn left. Take 7 steps. Take 2 steps. Take 4 steps. Take 8 steps.
+Options:
+- Yes
+- No
+
+Q: If you follow these instructions, do you return to the starting point? Turn around. Take 1 step. Take 6 steps. Turn around. Take 6 steps. Take 9 steps. Take 1 step.
+Options:
+- Yes
+- No
+
+Q: If you follow these instructions, do you return to the starting point? Always face forward. Take 2 steps right. Take 9 steps left. Take 7 steps right.
+Options:
+- Yes
+- No
+
+Reason for the decision & Answer:
+It is crucial to process each of the instruction and keep track of the current position and direction to solve the task. Therefore, the variables tracking is an effective way to tackle the target task. So the answer is Variables tracking.

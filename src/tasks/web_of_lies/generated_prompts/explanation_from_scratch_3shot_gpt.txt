@@ -1,0 +1,22 @@
+Explanation:
+This task involves determining the truthfulness of a statement made by one individual based on the statements made by others in a chain. The task requires understanding the relationships between truth-tellers and liars and applying logical reasoning to determine the final answer.
+
+Analyzing the Task:
+1. Establishing Truth Relationships: Each person's statement about another person can be categorized as either true or false. This forms the basis of determining who tells the truth and who lies.
+
+2. Propagating Truthfulness: By analyzing the statements in a sequential manner, the truthfulness of each person can be deduced based on the statements made by others.
+
+3. Identifying the Final Question: The task usually asks whether a specific person tells the truth or not based on the chain of statements.
+
+Constructing the Code Prompt:
+1. Parsing Statements: Extract the statements made by each person from the input text. This involves identifying who is talking about whom and whether they are telling the truth or lying.
+
+2. Establishing Truth Relationships: Create a dictionary to store the truthfulness of each person based on the statements made by others. This dictionary will be updated as the statements are processed.
+
+3. [Important] Analyzing Statements: Iterate over each statement and update the truthfulness of the individuals involved based on the logic that if A says B lies, then A is telling the truth if B is a liar, and vice versa. This step involves logical reasoning and updating the truth dictionary.
+
+4. Extracting the Final Question: Identify the specific question asked in the input text regarding the truthfulness of a particular person.
+
+5. Determining the Answer: Based on the final truthfulness of the person in question as determined by the logic and the statements provided, select 'Yes' if the person tells the truth and 'No' if they do not.
+
+By following these steps and applying logical reasoning to the statements provided, the code can accurately determine whether the specified individual tells the truth or not.

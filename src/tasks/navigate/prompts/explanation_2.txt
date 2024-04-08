@@ -1,0 +1,17 @@
+This task involves determining whether a series of movements brings a person back to their starting point. This requires tracking the person's position in a two-dimensional space and updating their location based on the instructions given.
+
+Analyzing the Task:
+It is crucial to process each of the instruction and keep track of the current position and direction to solve the task. Therefore, the variables tracking is an effective way to tackle the target task.
+
+Constructing the Code Prompt:
+
+1. Initializing Position and Direction: The person starts at a fixed point (0,0) facing a specific direction (e.g., north). This setup requires initializing variables for x and y coordinates, and a variable for direction.
+
+2. Parsing Instructions: The instructions are separated and parsed to identify the type and magnitude of each movement. This involves string manipulation and possibly a mapping of textual instructions to movements and turns.
+
+3. [Variables tracking] Processing Each Instruction: Process each instruction and update the current coordinates and direction by using 'for loop'. Following things should be logged with print() function for each intermediate steps:
+- Each instruction to process
+- Current coordinates and direction
+- Updated coordinates and direction
+
+4. Checking the Final Position and Returning the Result: After processing all instructions, the final coordinates are compared with the starting point to determine if the person has returned to the start. Based on whether the final position matches the starting point, the function returns 'Yes' or 'No'.

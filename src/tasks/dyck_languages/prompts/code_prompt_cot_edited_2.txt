@@ -1,0 +1,30 @@
+def complete_dyck_languages(input_text):
+    # Step 1: Initialize a stack to keep track of open parentheses and split the input text to identify and define all types of open parentheses in the text.
+    stack = []
+    character_list = input_text.split()
+    open_to_close_parenthesis_dict = {"(": ")", "<": ">", "{": "}", "[": "]"}
+    opening_parenthesis = ["(", "<", "{", "["]
+    print(f"Parse characters in the input and initialize a stack to track of open parentheses. \nCurrent stack: {stack}. Parsed characters: {character_list}") 
+    
+    
+    # Step 2: [Varibales tracking] Iterate over the input characters.
+    print("Check if a character is an opening parenthesis while iterating over the input characters.")
+    for char in character_list:
+        # Step 2: If it's an opening parenthesis, push it onto the stack.
+        if char in opening_parenthesis:
+		        print(f"Iteration {i+1}: Current character {char} is an opening parenthesis.")
+            stack.append(char)
+            print(f"Thus, we append {char} to the stack. Current stack after insertion: {', '.join(stack)}")
+        
+        # Step 2: If it's a closing parenthesis, check against the last opening parenthesis in the stack for a match, and pop the stack if it matches.
+        else:
+            print(f"Iteration {i+1}: Current character {char} is not an opening parenthesis.\n Thus we delete the last item {stack[-1]} from the stack\n current stack before deletion: {" ".join(stack)} -> updated stack after deletion: {' '.join(stack[:-1]) if stack else 'empty'}")
+            stack.pop()
+    
+    # Step 3: After processing all input characters, any remaining open parentheses in the stack need to be closed in reverse order (LIFO).
+    print(f"The resulting stack is {' '.join(stack)}.")
+    print(f"We will need to pop out {' '.join(stack[::-1])} one by one in that order.")
+    closing_list = [parentheses_pairs[opening] for opening in stack[::-1]]
+    
+    # Step 5: Formulate the sequence of closing parentheses seperated with a space and return it as an answer.
+    return " ".join(closing_list) 

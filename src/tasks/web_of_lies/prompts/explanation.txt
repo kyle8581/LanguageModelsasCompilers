@@ -1,0 +1,24 @@
+Explanation:
+This task involves evaluating a series of statements regarding truthfulness and deceit to determine the veracity of a final claim. It is a logical puzzle that requires tracking the assertions about each individual's honesty and then applying this information to deduce a final conclusion.
+
+Analyzing the Task:
+1. Statement Analysis: Each statement provides information about one person's opinion on another's truthfulness. These need to be carefully analyzed to understand their implications.
+
+2. Truth Mapping: A method to keep track of what is known about each person's truthfulness is essential. This can be handled with a dictionary (or map) where keys are individuals' names and values are their assumed truthfulness.
+
+3. Logical Deduction: Based on the statements, logical deductions must be made to update the truth map. This involves understanding the implications of each statement in the context of the existing information.
+
+4. Resolving the Final Query: The final step is to use the truth map to answer the specific question asked, based on the accumulated knowledge about each individual's truthfulness.
+
+Constructing the Code Prompt:
+1. Parsing Statements and Question: First, divide the input text into individual statements and the final question. This requires string manipulation.
+
+2. Creating a Truth Map: Initialize a map to keep track of each person's truthfulness status. Initially, the truthfulness of each individual might be unknown.
+
+3. [Important] Analyzing Statements: Iterate over each statement to extract the relevant information: who is making the statement, who it is about, and whether it asserts that the second person is truthful or deceitful.
+
+4. [Important] Updating the Truth Map: Use the information from each statement to update the truth map. This might involve setting or revising the truth status of one or more individuals.
+
+5. Evaluating the Final Question: Use the information in the truth map to determine the truthfulness of the person in question.
+
+6. Returning the Conclusion: Based on the evaluation, return 'Yes' if the person in the final question is determined to be truthful, or 'No' otherwise.

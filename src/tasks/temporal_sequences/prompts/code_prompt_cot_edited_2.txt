@@ -1,0 +1,36 @@
+def solve_temporal_sequences_quiz(input_text):
+    # Step 1: Identify statements and options from the input_text and output the statements.
+    statements = extract_statements(input_text)
+    options = extract_options(input_text)
+    print("Statements:", statements)
+
+    # Step 2: Check the start and end of the possible time.
+    print("Start of the possible time: ", parts[0])
+    print("End of the possible time: ", parts[-2])
+    
+    # Step 3: Initialize an available time map with the time slots in the options and output it. The time slots are marked as 'free' initially.
+    available_time_map = {option[4:]: "free" for option in options}
+    print(f"Initial available time dictionary: {available_time_map}")
+
+    # Step 4: [Variables tracking] Sequentially go through each statement, marking the times when the individual was seen or known to be engaged in specific activities.
+    for i, statement in enumerate(statements):
+        event, time_span = extract_information(statement)
+        print(f"\nStep {i}: {statement}")
+        print(f"current time occupation: {available_time_map}")
+        print(f"Time span to be occupied: {time_span}")
+        available_time_map[time_span] = "not available"
+        print(f"updated time occupation: {available_time_map}")
+
+    # Step 5: By checking the available time map, identify which time slot is marked as 'free'. For each time slot, output the time slot is free or not available.
+    for key in available_time_map:
+        if available_time_map[key] == "free":
+            print(f"{key} is free.")
+            free_time = key
+        else:
+            print(f"{key} is not available.")
+    
+    # Step 6: Review the provided options and return the one that matches the identified free time slot in Step 5.
+    print(f"Options:\n{options}")
+    for option in options:
+        if free_time in option:
+            return option

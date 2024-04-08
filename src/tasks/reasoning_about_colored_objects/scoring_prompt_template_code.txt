@@ -1,0 +1,6 @@
+{prompt}
+input_text = "{input_text}"
+final_answer = solve_colored_objects(input_text)
+print("Final answer:"+ final_answer)
+Generate the expected execution output (output from all print() functions) of the code. You don't have to actually run the code and do not care about 'not implemented error'.
+Expected output:

@@ -1,0 +1,1 @@
+In these logic puzzles, it is necessary to carefully track the statements made by each person to determine if they are telling the truth or lying. This requires keeping track of multiple variables and evaluating the logic of each statement. Therefore, the variables tracking approach would be more effective in solving these tasks. So the answer is Variables tracking.

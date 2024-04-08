@@ -1,0 +1,18 @@
+This task involves identifying specific attributes of items based on their descriptions and positions relative to each other. The task requires careful reading of the descriptions and analyzing the spatial relationships between the items.
+
+Analyzing the Task:
+The task involves interpreting the descriptions of items and their spatial relationships to answer specific questions. This task does not require variable tracking but rather a free format reasoning approach to extract the necessary information and make logical deductions.
+
+Constructing the Code Prompt:
+
+1. Parse the descriptions: Extract the descriptions of items and their colors from the input text.
+
+2. Identify the spatial relationships: Determine the positions of items relative to each other based on the descriptions provided.
+
+3. [Free format reasoning] Derive the answer with explanation: Analyze the descriptions and spatial relationships to answer the specific question posed in the task. Use a function like 'derive_answer_with_explanation' to provide both the reasoning and the correct answer.
+
+4. Match the answer with the options: Compare the derived answer with the given options and select the correct one.
+
+5. Return the final answer: Output the final answer in the specified format.
+
+By following these steps, the task can be effectively solved by reasoning through the descriptions and spatial relationships of the items provided in the task instances.

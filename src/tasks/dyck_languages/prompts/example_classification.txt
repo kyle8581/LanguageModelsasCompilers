@@ -1,0 +1,9 @@
+Example task instances:
+Q: Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: [ { [
+
+Q: Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: < > ( ( [ [ ( { } ) [ < > ] ]
+
+Q: Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: < [ < [ { < [ ] < { } > > } ] > { { ( ) } { < [ < > ] > }
+
+Reason for the decision & Answer:
+In order to find unclosed parentheses, tracking the opening and closing parentheses is really important. Therefore, the variables tracking is an effective way to solve the task. So the answer is Variables tracking.

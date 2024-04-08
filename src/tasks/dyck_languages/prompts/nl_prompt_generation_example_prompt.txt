@@ -1,0 +1,270 @@
+Generate an explanation, analyzation, and plan to generate code prompt for the last task considering the example task instances. Your plan should show enough intermediate reasoning steps towards the answer. Construct the plan as much as you can and describe the logic specifically. When constructing the plan for the code prompt, actively use 'if else statement' to take different reasoning paths based on the condition, 'loop' to efficiently process the repititive instructions, 'dictionary' to keep track of connections between important variables.
+
+[Example 1]
+Example task instances:
+This SVG path element <path d="M 54.74,88.20 L 59.54,81.34 M 59.54,81.34 L 62.50,68.22 L 72.08,77.66 L 79.82,80.84 M 79.82,80.84 L 74.65,86.44 M 74.65,86.44 L 71.70,99.56 L 62.12,90.12 M 62.12,90.12 L 54.74,88.20"/> draws a
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle
+
+This SVG path element <path d="M 95.20,70.83 L 87.79,78.67 L 75.59,79.89 L 69.02,71.72 L 67.78,63.84 L 72.64,57.51 L 82.81,55.78 L 93.46,60.66 L 95.20,70.83"/> draws a
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle
+
+This SVG path element <path d="M 19.24,16.78 L 35.66,38.80 L 35.35,47.96 L 28.47,55.02 L 24.85,45.48 L 14.57,58.70 L 19.24,16.78"/> draws a
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle
+
+This SVG path element <path d="M 64.00,63.00 L 44.00,63.00 L 44.00,50.00 L 64.00,50.00 L 64.00,45.00 L 85.00,57.00 L 64.00,68.00 L 64.00,63.00"/> draws a
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle
+
+This SVG path element <path d="M 24.45,23.22 L 30.07,20.10 L 38.16,23.15 L 41.78,30.00 L 31.71,29.18 M 31.71,29.18 L 30.55,43.39 L 23.15,39.21 L 21.00,28.90 M 21.00,28.90 L 24.45,23.22"/> draws a
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle
+
+Output Format:
+'(A)', '(B)', '(C)', ...
+
+Explanation:
+This task involves identifying the geometric shape formed by an SVG path. SVG (Scalable Vector Graphics) is a language for describing two-dimensional graphics in XML. The path element is used to define a path that can consist of lines, curves, arcs, and more. Understanding and interpreting these paths to determine the resulting shape is the challenge.
+
+Analyzing the Task:
+1. Interpreting SVG Path Commands: Understanding the "M" (moveto) and "L" (lineto) commands in SVG is essential. These commands dictate the starting point and subsequent points of the shape.
+
+2. Analyze the SVG Path Commands: By generating a detailed explanation on the Path, the code should generate an analysis of the shape of the path.
+
+3. Advanced Geometry Analysis: For complex shapes, more sophisticated geometric analysis might be needed, such as calculating side lengths or angles.
+
+Constructing the Code Prompt:
+1. Extracting SVG Path Data: The first step involves parsing the input text to extract the SVG path data.
+
+2. Initializing a coordinate map: Create a coordinate map that maps each coordinate with the other connected coordinates 
+
+3. Updating the coordinate map: Iterate over the parsed SVG paths, update the coordinate map referring to the each SVG path.
+
+4. Analyzing the characteristics of the shape referring to the coordinate map: According to the coordinate map, make an analysis over the shape.
+
+5. [important] Shape Identification: Identify reasons and the proper shape using the completed coordinates map and the analysis results. Use an abstract function like 'identify_shape_with_explanation' which outputs both the reason and the shape.
+
+6. Matching and Outputting the Answer: Parse the options from the input text, find the corresponding option from the given options, and only output the label of the option as the final answer to the question.
+
+[Example 2]
+Example task instances:
+Question: Audrie lies. Conception says Audrie lies. Teressa says Conception tells the truth. Delfina says Teressa lies. Helene says Delfina tells the truth. Does Helene tell the truth?
+
+Question: Vina tells the truth. Alejandro says Vina lies. Maybelle says Alejandro tells the truth. Millicent says Maybelle lies. Elanor says Millicent tells the truth. Does Elanor tell the truth?
+
+Question: Phoebe tells the truth. Helene says Phoebe lies. Sima says Helene lies. Alejandro says Sima tells the truth. Michaela says Alejandro lies. Does Michaela tell the truth?
+
+Question: Antwan lies. Jerry says Antwan tells the truth. Delfina says Jerry lies. Conception says Delfina lies. Bernita says Conception tells the truth. Does Bernita tell the truth?
+
+Question: Millicent tells the truth. Ka says Millicent tells the truth. Conception says Ka lies. Sal says Conception lies. Tamika says Sal lies. Does Tamika tell the truth?
+
+Output Format:
+'Yes' or 'No'
+
+Explanation:
+Explanation:
+This task involves evaluating a series of statements regarding truthfulness and deceit to determine the veracity of a final claim. It is a logical puzzle that requires tracking the assertions about each individual's honesty and then applying this information to deduce a final conclusion.
+
+Analyzing the Task:
+1. Statement Analysis: Each statement provides information about one person's opinion on another's truthfulness. These need to be carefully analyzed to understand their implications.
+
+2. Truth Mapping: A method to keep track of what is known about each person's truthfulness is essential. This can be handled with a dictionary (or map) where keys are individuals' names and values are their assumed truthfulness.
+
+3. Logical Deduction: Based on the statements, logical deductions must be made to update the truth map. This involves understanding the implications of each statement in the context of the existing information.
+
+4. Resolving the Final Query: The final step is to use the truth map to answer the specific question asked, based on the accumulated knowledge about each individual's truthfulness.
+
+Constructing the Code Prompt:
+1. Parsing Statements and Question: First, divide the input text into individual statements and the final question. This requires string manipulation.
+
+2. Creating a Truth Map: Initialize a map to keep track of each person's truthfulness status. Initially, the truthfulness of each individual might be unknown.
+
+3. [Important] Analyzing Statements: Iterate over each statement to extract the relevant information: who is making the statement, who it is about, and whether it asserts that the second person is truthful or deceitful.
+
+4. [Important] Updating the Truth Map: Use the information from each statement to update the truth map. This might involve setting or revising the truth status of one or more individuals.
+
+5. Evaluating the Final Question: Use the information in the truth map to determine the truthfulness of the person in question.
+
+6. Returning the Conclusion: Based on the evaluation, return 'Yes' if the person in the final question is determined to be truthful, or 'No' otherwise.
+
+[Example 3]
+Example task instances:
+On the floor, you see a set of things arranged in a row: a grey pen, a burgundy dog leash, a gold pencil, a pink plate, and a black envelope. How many non-purple things do you see to the right of the grey thing?
+Options:
+(A) zero
+(B) one
+(C) two
+(D) three
+(E) four
+(F) five
+(G) six
+
+On the desk, I see two magenta mugs, one burgundy jug, two silver mugs, one teal jug, three magenta jugs, and one burgundy mug. If I remove all the silver items from the desk, how many mugs remain on it?
+Options:
+(A) zero
+(B) one
+(C) two
+(D) three
+(E) four
+(F) five
+(G) six
+(H) seven
+(I) eight
+(J) nine
+(K) ten
+(L) eleven
+(M) twelve
+(N) thirteen
+(O) fourteen
+(P) fifteen
+(Q) sixteen
+
+On the nightstand, there are three brown dog leashes, one silver dog leash, two brown puzzles, one silver keychain, and three silver crayons. If I remove all the keychains from the nightstand, how many silver items remain on it?
+Options:
+(A) zero
+(B) one
+(C) two
+(D) three
+(E) four
+(F) five
+(G) six
+(H) seven
+(I) eight
+(J) nine
+(K) ten
+(L) eleven
+(M) twelve
+(N) thirteen
+(O) fourteen
+(P) fifteen
+(Q) sixteen
+
+On the floor, you see a purple bracelet and a red scrunchiephone charger. How many things are neither red nor purple?
+Options:
+(A) zero
+(B) one
+(C) two
+(D) three
+(E) four
+(F) five
+(G) six
+
+On the floor, you see several items arranged in a row: a green scrunchiephone charger, a silver bracelet, and a gold stress ball. What is the color of the item directly to the left of the gold item?
+Options:
+(A) red
+(B) orange
+(C) yellow
+(D) green
+(E) blue
+(F) brown
+(G) magenta
+(H) fuchsia
+(I) mauve
+(J) teal
+(K) turquoise
+(L) burgundy
+(M) silver
+(N) gold
+(O) black
+(P) grey
+(Q) purple
+(R) pink
+
+Output Format:
+'(A)', '(B)', '(C)', ...
+
+Explanation:
+Explanation:
+This task involves solving questions related to the color, count, and spatial arrangement of objects. The challenge lies in accurately parsing the input to extract relevant information and applying logical reasoning to determine the correct answer.
+
+Analyzing the Task:
+1. Object and Property Identification: Identify each object mentioned in the text along with its properties (like color) and position.
+
+2. Understanding the Question: Determine the specific nature of the question – whether it's about identifying the color of an object, counting objects based on a criterion, or understanding their spatial arrangement.
+
+3. Processing According to Question Type: Based on the question's nature, apply the appropriate logical reasoning:
+   - For color identification, locate the specific object and determine its color.
+   - For counting objects, enumerate the objects that meet the specified criteria.
+   - For spatial reasoning, analyze the relative positions of the objects.
+
+4. Matching with Options: Once the analysis is complete, match the result with the given options to find the correct answer.
+
+Constructing the Code Prompt:
+1. Extracting Object Properties: Parse the input text to create a list of objects with their associated properties and positions.
+
+2. Identifying the Question: Extract the specific question from the input text and determine its type (color identification, counting, or spatial reasoning).
+
+3. Listing Options: Extract the list of possible answers provided in the input text.
+
+4. [Important] Processing Logic:
+   - For color identification, find the target object and determine its color.
+   - For counting, iterate over the objects, count those that meet the criteria, and keep track of the count.
+   - For spatial reasoning, arrange the objects as described and deduce the answer based on their positions.
+
+5. Determining the Answer: Match the result of the logical processing with the options to identify the correct answer.
+
+6. Returning the Final Answer: Output the matched option as the final answer to the question.
+
+[Example 4]
+Example task instances:
+Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: ( { } ) { ( [ { ( ) } ] ( [ ] ) )
+
+Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: { ( ( [ ] ) )
+
+Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: < > {
+
+Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: < { [ ] } > ( ) < [ [ { [ [ ] ] } ] ] ( ) [ < ( [ { } ] ) > ( ( ) ) ]
+
+Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: ( {
+
+Output Format:
+A string of closing brakets seperated with a space.
+
+Explanation:

@@ -1,0 +1,34 @@
+def penguins_in_a_table(input_text):
+    # Step 1: Parse information from the input text and present them in a table.
+    penguin_info_table = make_table(input_text)
+    print("The following is a table containing information about each penguin:\n", penguin_info_table)
+
+    # Step 2: Parse instruction of further modification to the table.
+    required_modification_to_table = identify_required_modification(input_text)
+    print(f"The instruction we must follow before answering the question is: {required_modification_to_table}")
+
+    # Step 3: If the required modification is exists, update the table according to it. Show the current table and updated table.
+    if required_modification_to_table != None:
+        print("Update the current table upon the further modification.")
+        print(f"Current table: {penguin_info_table}")
+        penguin_info_table = penguin_info_table.processing(required_modification_to_table)
+        print(f"Updated table: {required_modification_to_table}")
+    
+    # Step 4: [Free format reasoning] Identify question from input text and outputs the reasoning and the proper answer to the question.
+    question = identify_question(input_text)
+    print(f"The question is: {question}")
+    reason, pre_answer = derive_answer_with_explanation(penguin_info_table, question)
+    print(f"Reason for the decision: {reason}")
+    print(f"Therefore, the answer is: {pre_answer}")
+
+    # Step 5: Identify options and match the result from the Step 4 with the given options.
+    options = extract_options(input_text)
+    print("The answer options are:\n", options)
+    answer = None
+    for option in options:
+        if pre_answer in option:
+            answer = option[:3]
+            break
+    
+    # Step 6: Return the final answer.
+    return answer

@@ -1,0 +1,32 @@
+def track_swaps(input_text):
+    # Step 1: Initialize Positions or Gifts
+    initial_assignments = extract_initial_assignments(input_text)
+    print("Initial assignments:", initial_assignments)
+
+    # Step 2: Define Swap Pairs
+    swap_pairs = extract_swap_pairs(input_text)
+    print("Swap pairs:", swap_pairs)
+
+    # Step 3: Process Swaps
+    final_assignments = initial_assignments.copy()
+    for pair in swap_pairs:
+        if pair[0] in final_assignments and pair[1] in final_assignments:
+            temp = final_assignments[pair[0]]
+            final_assignments[pair[0]] = final_assignments[pair[1]]
+            final_assignments[pair[1]] = temp
+        print(f"After swapping {pair[0]} and {pair[1]}: {final_assignments}")
+
+    # Step 4: Determine the Final Position or Gift
+    final_person = identify_final_person(input_text)
+    final_position = final_assignments[final_person]
+    print(f"The final position or gift of {final_person} is: {final_position}")
+
+    # Step 5: Match and Output the Answer
+    options = extract_options(input_text)
+    print("Options:", options)
+    answer = None
+    for option in options:
+        if final_position in option:
+            answer = option[:3]
+    
+    return answer

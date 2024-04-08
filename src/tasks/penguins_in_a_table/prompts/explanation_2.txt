@@ -1,0 +1,17 @@
+This task revolves around interpreting and extracting specific pieces of information from structured data presented in tabular format. It focuses on a distinct query related to the attributes (age, height, weight) of individuals (penguins in this case) listed in the table.
+
+Analyzing the Task:
+To find target individual from the table referring to the question is hard to implement with a variables tracking method. Therefore, the free format reasoning could be a better way to solve the problem.
+
+Constructing the Code Prompt:
+1. Construct initial table: Parse information from the input text and present them in a table.
+
+2. Identifying a modification instruction: Parse instruction of further modification to the table.
+
+3. Updating the info tabel: If the required modification is exists, update the table according to it. Show the current table and updated table.
+
+4. [Free format reasoning] Identify question from input text and outputs the reasoning and the proper answer to the question. Use an abstract function like 'derive_answer_with_explanation' which outputs both the reasoning and the correct answer to the question.
+
+5. Choosing correct answer from the options: Identify options and match the result from the Step 4 with the given options.
+
+6. Returning the final answer: Return the final answer.

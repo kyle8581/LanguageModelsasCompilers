@@ -1,0 +1,26 @@
+def solve_colored_objects(input_text):
+    # Step 1: Extract the descriptions of items and their colors from the input text.
+    items = parse_items(input_text)
+    print("Items on the surface:\n", items)
+
+    # Step 2: Determine the positions of items relative to each other based on the descriptions provided.
+    spatial_relationships = analyze_spatial_relationships(items)
+    print("Spatial relationships between items:\n", spatial_relationships)
+
+    # Step 3: Derive the answer with explanation by analyzing the descriptions and spatial relationships.
+    question = identify_question(input_text)
+    print("The question is:", question)
+    reason, answer = derive_answer_with_explanation(items, spatial_relationships, question)
+    print("Reasoning for the answer:", reason)
+
+    # Step 4: Compare the derived answer with the given options and select the correct one.
+    options = extract_options(input_text)
+    print("Answer options:\n", options)
+    final_answer = None
+    for option in options:
+        if answer in option:
+            final_answer = option[:3]
+            break
+
+    # Step 5: Return the final answer.
+    return final_answer

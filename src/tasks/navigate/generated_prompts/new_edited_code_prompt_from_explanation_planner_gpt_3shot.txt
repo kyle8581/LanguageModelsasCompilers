@@ -1,0 +1,24 @@
+def ends_up_at_start(input_text):
+    # Step 1: Extract the sequence of movements and rotations from the input text.
+    instructions = extract_instructions(input_text)
+    print("Instructions:", instructions)
+
+    # Step 2: Initialize variables to track the current position and orientation.
+    x, y = 0, 0
+    orientation = "N"
+    print(f"Initial position: ({x}, {y}), Orientation: {orientation}")
+
+    # Step 3: Process each instruction to update the position and orientation accordingly.
+    for instruction in instructions:
+        x, y, orientation = process_instruction(instruction, x, y, orientation)
+        print(f"Instruction: {instruction} -> Position: ({x}, {y}), Orientation: {orientation}")
+
+    # Step 4: Determine the final position after following all instructions.
+    final_position = (x, y)
+    print("Final Position:", final_position)
+
+    # Step 5: Check if the final position matches the starting point to determine if the participant returns to the starting point.
+    if final_position == (0, 0):
+        return 'Yes'
+    else:
+        return 'No'

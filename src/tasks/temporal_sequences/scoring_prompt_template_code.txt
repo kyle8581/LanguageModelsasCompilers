@@ -1,0 +1,6 @@
+{prompt}
+input_text = "{input_text}"
+final_answer = solve_temporal_sequences_quiz(input_text)
+print("Final answer:"+ final_answer)
+Generate the expected output (from all print() functions) of the code. You don't have to actually run the code and do not care about 'not implemented error'.
+Exprected output:

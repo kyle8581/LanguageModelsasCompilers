@@ -1,0 +1,16 @@
+def ends_up_at_start(input_text):
+    # Step 1: Initialize coordinates and direction by setting the starting point at (0, 0) and face north.
+    cur_x, cur_y = 0, 0
+    cur_direction = 0
+
+    # Step 2: Identify and list up instructions from the input text.
+    instructions = parse_instructions(input_text)
+    
+    # Step 3: [Variables tracking] Process each instruction and update the current coordinates and direction.
+    for i, instruction in enumerate(instructions):
+        new_x, new_y, new_direction = process_instruction(instruction, cur_x, cur_y, cur_direction) # process instruction to calculate new position and direction
+        print(f"Step {i}: {instruction} - current coordinates: ({cur_x}, {cur_y}), current direction: {cur_direction} -> updated coordinates: ({new_x}, {new_y}), updated direction: {new_direction}")
+        cur_x, cur_y, cur_direction = new_x, new_y, new_direction
+
+    # Step 4: Return "yes" if the final coordinates are (0, 0). Otherwise, return "no" as the final answer.
+    return 'yes' if cur_x == 0 and cur_y == 0 else 'no'

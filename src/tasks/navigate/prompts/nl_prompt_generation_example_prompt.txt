@@ -1,0 +1,182 @@
+Generate a plan for the last task considering the example task instances. Your plan should show enough intermediate reasoning steps towards the answer. Construct the plan as much as you can and describe the logic specifically.
+
+[Example 1]
+Example task instances:
+I have an oven, an apple, three bananas, a table, and two grapes. How many fruits do I have?
+
+I have a toaster, a bed, a stove, a car, a microwave, a lamp, and a table. How many objects do I have?
+
+I have a pig, a fish, a mouse, a frog, a dog, a rabbit, a donkey, a chicken, and a duck. How many animals do I have?
+
+Output Format:
+A positive integer
+
+Explanation:
+This task involves identifying and counting specific types of objects (fruits or vegetables) from a mixed list. The primary challenge is correctly categorizing each item in the list and then tallying the counts of the desired categories.
+
+Analyzing the Task:
+1. Object Categorization: Determining whether each item in the list is a fruit, a vegetable, or neither. This requires knowledge of common fruits and vegetables.
+
+2. Counting Objects: Accurately counting the number of items in each category. This may involve handling singular and plural forms, as well as numerical phrases (e.g., "two peaches").
+
+3. Handling Varied Input: The input text may vary in format and content, requiring flexible parsing to extract the necessary information.
+
+Constructing the Code Prompt:
+1. Extracting Objects from Input: The first step is parsing the input text to create a list of objects. This requires string manipulation and possibly natural language processing techniques.
+
+2. Extracting the Question: Determine what category of items needs to be counted (e.g., fruits, vegetables) from the input text. 
+
+3. Initializing Count Variables: Set up a variable to keep track of the total count of the desired objects.
+
+4. [Important] Counting Each Object: Iterate over each object, determine if it belongs to the desired category (fruit or vegetable), and count it. This process shoud be logged with print() function. This involves:
+   - Identifying singular and plural forms.
+   - Recognizing and handling numerical phrases.
+   - Keeping a running total of the count.
+
+5. Returning the Total Count: After processing all objects, return the total count as the answer.
+
+[Example 2]
+Example task instances:
+Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: [ < ( < < > [ ] ( ) >
+
+Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: [ [ < [ ( [ < [ ] > ] ) ] > ] ( { }
+
+Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: < [ { { [ [ [ < ( < [ ] { [ ( [ ] ) ] [ ] < > } > ) > ] ( [ ] ) ] ] } }
+
+Output Format:
+A string of closing brakets seperated with a space.
+
+Explanation:
+This task involves completing a sequence of opening and closing parentheses, ensuring that they are correctly matched and the entire sequence is well-formed. This is a classic problem in computer science related to parsing and syntactic analysis, often solved using stack data structures.
+
+Analyzing the Task:
+1. Parentheses Matching: Each opening parenthesis must have a corresponding closing one. The sequence must adhere to the proper nesting and order of parentheses.
+
+2. Tracking Open Parentheses: A stack is ideal for keeping track of open parentheses, as it allows us to process them in a last-in, first-out (LIFO) manner.
+
+3. Completing the Sequence: The goal is to add the appropriate closing parentheses to complete the sequence.
+
+Constructing the Code Prompt:
+1. Initialize a Stack: Use a stack to keep track of opening parentheses. This is crucial for understanding which parentheses are open and need closing.
+
+2. Split and Parse Input: Split the input string into individual characters for easy processing. Identify types of parentheses and their corresponding closing counterparts.
+
+3. [Important] Iterate and Process Characters: Iterate over the input characters. To keep track of the stack, make sure printing out the stack variable using print(). For each character:
+   - If it's an opening parenthesis, push it onto the stack.
+   - If it's a closing parenthesis, check against the last opening parenthesis in the stack for a match, and pop the stack if it matches.
+
+4. Generate Closing Sequence: After processing all input characters, any remaining open parentheses in the stack need to be closed in reverse order (LIFO).
+
+5. Construct and Return the Completed Sequence: Formulate the sequence of closing parentheses to append to the original sequence, ensuring that the overall structure is properly formed.
+
+The stack is a natural choice for this problem, as it efficiently handles the LIFO order required for matching parentheses. Iterating over each character provides a step-by-step approach to build the final sequence. This method is effective and straightforward, ensuring correct matching and order of parentheses. The loop is used for iteration, and the stack manages the open parentheses, making the solution both clear and efficient for this task.
+
+[Example 3]
+Example task instances:
+On the desk, you see several items arranged in a row: a fuchsia cup, a red pen, a turquoise fidget spinner, a teal paperclip, and a silver teddy bear. How many non-yellow items do you see to the right of the fidget spinner?
+Options:
+(A) zero
+(B) one
+(C) two
+(D) three
+(E) four
+(F) five
+(G) six
+
+On the nightstand, there is a silver jug, a blue pair of sunglasses, a fuchsia stress ball, and a purple sheet of paper. What color is the stress ball?
+Options:
+(A) red
+(B) orange
+(C) yellow
+(D) green
+(E) blue
+(F) brown
+(G) magenta
+(H) fuchsia
+(I) mauve
+(J) teal
+(K) turquoise
+(L) burgundy
+(M) silver
+(N) gold
+(O) black
+(P) grey
+(Q) purple
+(R) pink
+
+On the desk, you see several things arranged in a row: a brown scrunchiephone charger, a mauve keychain, a turquoise pencil, and an orange mug. What is the color of the thing furthest from the scrunchiephone charger?
+Options:
+(A) red
+(B) orange
+(C) yellow
+(D) green
+(E) blue
+(F) brown
+(G) magenta
+(H) fuchsia
+(I) mauve
+(J) teal
+(K) turquoise
+(L) burgundy
+(M) silver
+(N) gold
+(O) black
+(P) grey
+(Q) purple
+(R) pink
+
+Output Format:
+'(A)', '(B)', '(C)', ...
+
+Explanation:
+This task involves solving questions related to the color, count, and spatial arrangement of objects. The challenge lies in accurately parsing the input to extract relevant information and applying logical reasoning to determine the correct answer.
+
+Analyzing the Task:
+1. Object and Property Identification: Identify each object mentioned in the text along with its properties (like color) and position.
+
+2. Understanding the Question: Determine the specific nature of the question – whether it's about identifying the color of an object, counting objects based on a criterion, or understanding their spatial arrangement.
+
+3. Processing According to Question Type: Based on the question's nature, apply the appropriate logical reasoning:
+   - For color identification, locate the specific object and determine its color.
+   - For counting objects, enumerate the objects that meet the specified criteria.
+   - For spatial reasoning, analyze the relative positions of the objects.
+
+4. Matching with Options: Once the analysis is complete, match the result with the given options to find the correct answer.
+
+Constructing the Code Prompt:
+1. Extracting Object Properties: Parse the input text to create a list of objects with their associated properties and positions.
+
+2. Identifying the Question: Extract the specific question from the input text and determine its type (color identification, counting, or spatial reasoning).
+
+3. Listing Options: Extract the list of possible answers provided in the input text.
+
+4. [Important] Processing Logic:
+   - For color identification, find the target object and determine its color.
+   - For counting, iterate over the objects, count those that meet the criteria, and keep track of the count.
+   - For spatial reasoning, arrange the objects as described and deduce the answer based on their positions.
+
+5. Determining the Answer: Match the result of the logical processing with the options to identify the correct answer.
+
+6. Returning the Final Answer: Output the matched option as the final answer to the question.
+
+[Example 4]
+Example task instances:
+If you follow these instructions, do you return to the starting point? Always face forward. Take 6 steps left. Take 3 steps backward. Take 3 steps left.
+Options:
+- Yes
+- No
+
+If you follow these instructions, do you return to the starting point? Take 2 steps. Take 1 step. Take 8 steps. Take 4 steps. Turn right. Turn right. Take 4 steps. Turn left. Turn around.
+Options:
+- Yes
+- No
+
+If you follow these instructions, do you return to the starting point? Always face forward. Take 10 steps backward. Take 7 steps backward. Take 8 steps right. Take 6 steps right. Take 3 steps left.
+Options:
+- Yes
+- No
+
+Output Format:
+'Yes' or 'No'
+
+Explanation:

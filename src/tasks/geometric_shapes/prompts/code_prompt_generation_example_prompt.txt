@@ -1,0 +1,364 @@
+Generate the code prompt for the last task using the similar style of the example codes. Add enough print() functions following the provided steps  in the provided explanation to output intermediate reasoning steps towards the answer and keep track of important variables. Implement the code prompt as much as you can and describe the logic in code following the provided explanation but do not make a code that is biased toward a single task example instance. For example, do not use hard-coded variables that are obtained from task instances (e.g., using specific name of person in the question). The code prompt must be able to be applied to various instances of same task. When returning the final answer, carefully consider the output format. Especially, for the multiple choice questions, the final answer should be one of the given options. The main function name should be 'recognize_shape_from_svg'. Along with the main function, you may want to define some helper functions that might be helpful for implementing the 'recognize_shape_from_svg'. But you don't have to explicitly implement the helper functions, but just define them with function name and a single-line explanation in comment. When constructing the main function, actively use 'if else statement' to take different reasoning paths based on the condition, 'loop' to efficiently process the repititive instructions, 'dictionary' to keep track of connections between important variables. These will make your code more logical and effective.
+
+[Example 1]
+Example task instances:
+If you follow these instructions, do you return to the starting point? Take 6 steps. Turn around. Take 8 steps. Take 2 steps.
+Options:
+- Yes
+- No
+
+If you follow these instructions, do you return to the starting point? Always face forward. Take 10 steps forward. Take 4 steps forward. Take 7 steps backward. Take 7 steps backward.
+Options:
+- Yes
+- No
+
+If you follow these instructions, do you return to the starting point? Take 7 steps. Take 4 steps. Take 3 steps. Take 10 steps. Turn left. Turn around.
+Options:
+- Yes
+- No
+
+Output Format:
+'Yes' or 'No'\Explanation:
+This task involves determining whether a series of movements brings a person back to their starting point. This requires tracking the person's position in a two-dimensional space and updating their location based on the instructions given.
+
+Analyzing the Task:
+
+1.Directional Movement and Position Tracking: The task requires keeping track of the person's position (x and y coordinates) as they move in different directions.
+
+2.Interpreting Movement Instructions: Instructions include steps in various directions (left, right, forward, backward) and turning, which affects the direction of subsequent steps.
+
+3.Determining the Final Position: The objective is to determine if the final position after following all instructions is the same as the starting position.
+
+Constructing the Code Prompt:
+
+1.Initializing Position and Direction: The person starts at a fixed point (0,0) facing a specific direction (e.g., north). This setup requires initializing variables for x and y coordinates, and a variable for direction.
+
+2.Parsing Instructions: The instructions are separated and parsed to identify the type and magnitude of each movement. This involves string manipulation and possibly a mapping of textual instructions to movements and turns.
+
+3.[Important] Processing Each Instruction: Each instruction affects the position or the direction of movement. The intermediate step for calculating the final coordinate should be printed out using print() function. This involves:
+
+-Translating forward, backward, left, and right steps into changes in the x and y coordinates.
+-Handling turns to update the direction of movement.
+-A function like process_instruction can be created to encapsulate the logic for each instruction.
+4.Checking the Final Position: After processing all instructions, the final coordinates are compared with the starting point to determine if the person has returned to the start.
+
+5.Returning the Result: Based on whether the final position matches the starting point, the function returns 'Yes' or 'No'.
+
+Code prompt:
+def ends_up_at_start(input_text):
+    # Step 1: Initialize coordinates and direction by setting the starting point at (0, 0) and face north.
+    cur_x, cur_y = 0, 0
+    cur_direction = 0
+
+    # Step 2: Identify and list up instructions from the input text.
+    instructions = input_text.split('. ')
+    
+    # Step 3: Process each instruction and update the current coordinates and direction. In order to keep track of changes, output the instruction, current and updated coordinates and direction.
+    for i, instruction in enumerate(instructions):
+        new_x, new_y, new_direction = process_instruction(instruction, cur_x, cur_y, cur_direction) # process instruction to calculate new position and direction
+        print(f"Step {i}: {instruction} - current coordinates: ({cur_x}, {cur_y}), current direction: {cur_direction} -> updated coordinates: ({new_x}, {new_y}), updated direction: {new_direction}")
+        cur_x, cur_y, cur_direction = new_x, new_y, new_direction # update position and direction
+
+    # Step 4: Output "yes" if the final coordinates are (0, 0). Otherwise, output "no" as the final answer.
+    return 'yes' if cur_x == 0 and cur_y == 0 else 'no'
+
+[Example 2]
+Example task instances:
+Question: Michael lies. Jerry says Michael tells the truth. Delbert says Jerry tells the truth. Sima says Delbert lies. Alexis says Sima lies. Does Alexis tell the truth?
+
+Question: Crista tells the truth. Shalonda says Crista lies. Millicent says Shalonda lies. Vernell says Millicent lies. Inga says Vernell tells the truth. Does Inga tell the truth?
+
+Question: Elanor tells the truth. Ka says Elanor lies. Delbert says Ka tells the truth. Michaela says Delbert lies. Sherrie says Michaela lies. Does Sherrie tell the truth?
+
+Output Format:
+'Yes' or 'No'\Explanation:
+Explanation:
+This task involves evaluating a series of statements regarding truthfulness and deceit to determine the veracity of a final claim. It is a logical puzzle that requires tracking the assertions about each individual's honesty and then applying this information to deduce a final conclusion.
+
+Analyzing the Task:
+1. Statement Analysis: Each statement provides information about one person's opinion on another's truthfulness. These need to be carefully analyzed to understand their implications.
+
+2. Truth Mapping: A method to keep track of what is known about each person's truthfulness is essential. This can be handled with a dictionary (or map) where keys are individuals' names and values are their assumed truthfulness.
+
+3. Logical Deduction: Based on the statements, logical deductions must be made to update the truth map. This involves understanding the implications of each statement in the context of the existing information.
+
+4. Resolving the Final Query: The final step is to use the truth map to answer the specific question asked, based on the accumulated knowledge about each individual's truthfulness.
+
+Constructing the Code Prompt:
+1. Parsing Statements and Question: First, divide the input text into individual statements and the final question. This requires string manipulation.
+
+2. Creating a Truth Map: Initialize a map to keep track of each person's truthfulness status. Initially, the truthfulness of each individual might be unknown.
+
+3. [Important] Analyzing Statements: Iterate over each statement to extract the relevant information: who is making the statement, who it is about, and whether it asserts that the second person is truthful or deceitful.
+
+4. [Important] Updating the Truth Map: Use the information from each statement to update the truth map. This might involve setting or revising the truth status of one or more individuals.
+
+5. Evaluating the Final Question: Use the information in the truth map to determine the truthfulness of the person in question.
+
+6. Returning the Conclusion: Based on the evaluation, return 'Yes' if the person in the final question is determined to be truthful, or 'No' otherwise.
+
+Code prompt:
+def evaluate_boolean_word_problem(input_text):
+    # Step 1: Divide the input text into individual statements and the final question. Output each statements.
+    statements = input_text.split("")[:-1]
+    question = input_text.split("")[-1]
+    print("Parsed statements:", statements)
+    
+    # Step 2: Create a Truth Map to keep track of the assumed truthfulness of each person mentioned in the statements. No truth values are assigned initially.
+    truth_map = {statement.split()[0]: None for statement in statements}
+
+    # Step 3: Analyze Each Statement. For each statement, first output the statement number and the statement. identify the subject person (who makes the statement), the object person (who the statement is about), and the expected truth value (whether the object person is said to tell the truth or lie). Output the current statement under analysis along with the object person and the expected truth value for clarity.
+    for i, statement in enumerate(statements):
+        print(f"({i}): {statement}")
+        speaker, target_person, expected_truth_value_of_target_person = extract_person_and_truth_value(statement) # speaker - says - target_person - expected_truth_value_of_target_person
+
+        print(f"{speaker} says : {target_person} - {expected_truth_value_of_target_person}")
+        print(f"Truth value of {target_person}: {truth_map[target_person]}")
+
+        # Step 4: Update the Truth Map based on the analysis of each statement. If the statement's claim aligns with the current assumption about the object person's truthfulness, mark the subject person as truthful. Otherwise, mark them as untruthful. After each update, print the name of the person being updated, their determined truth value, and the updated truth map to track changes.
+        if truth_map[target_person] == None: # if the statement does not need to be checked
+            print(f"{expected_truth_value_of_target_person} matches {truth_map[target_person]}")
+            truth_map[target_person] = expected_truth_value_of_target_person
+        else:
+            print(f"{expected_truth_value_of_target_person} does not match {truth_map[target_person]}")
+            if truth_map[target_person] == expected_truth_value_of_target_person: # the speaker tells the truth
+                truth_map[speaker] = True
+            else: # the speaker lies
+                truth_map[speaker] = False
+
+        print(f"Person to update: {speaker} - {truth_map[speaker]}")
+
+        print(f"updated truth_map: {truth_map}")
+        print("\n\n")
+    
+    # Step 5: Using the completed truth map, determine the truthfulness of the person in the final question. Output the question for reference before making the determination.
+    print("question:", question)
+    target_person_in_question = extract_target_person_from_question(question)
+    target_truth_value = truth_map[target_person_in_question]
+    print(f"{target_person_in_question}: {target_truth_value})
+
+    # Step 6: Based on the evaluation, output "Yes" if the person in the final question is determined to tell the truth, otherwise output "No".
+    answer = "Yes" if target_truth_value else "No"
+
+    return answer
+
+[Example 3]
+Example task instances:
+On the floor, you see a blue mug, a green teddy bear, a silver scrunchiephone charger, a brown dog leash, a mauve sheet of paper, and a fuchsia envelope. What color is the scrunchiephone charger?
+Options:
+(A) red
+(B) orange
+(C) yellow
+(D) green
+(E) blue
+(F) brown
+(G) magenta
+(H) fuchsia
+(I) mauve
+(J) teal
+(K) turquoise
+(L) burgundy
+(M) silver
+(N) gold
+(O) black
+(P) grey
+(Q) purple
+(R) pink
+
+On the floor, you see a set of things arranged in a row: a black jug, a green dog leash, a turquoise sheet of paper, a burgundy puzzle, and a pink necklace. What is the color of the thing directly to the right of the burgundy thing?
+Options:
+(A) red
+(B) orange
+(C) yellow
+(D) green
+(E) blue
+(F) brown
+(G) magenta
+(H) fuchsia
+(I) mauve
+(J) teal
+(K) turquoise
+(L) burgundy
+(M) silver
+(N) gold
+(O) black
+(P) grey
+(Q) purple
+(R) pink
+
+On the desk, I see two magenta mugs, one burgundy jug, two silver mugs, one teal jug, three magenta jugs, and one burgundy mug. If I remove all the silver items from the desk, how many mugs remain on it?
+Options:
+(A) zero
+(B) one
+(C) two
+(D) three
+(E) four
+(F) five
+(G) six
+(H) seven
+(I) eight
+(J) nine
+(K) ten
+(L) eleven
+(M) twelve
+(N) thirteen
+(O) fourteen
+(P) fifteen
+(Q) sixteen
+
+Output Format:
+'(A)', '(B)', '(C)', ...\Explanation:
+Explanation:
+This task involves solving questions related to the color, count, and spatial arrangement of objects. The challenge lies in accurately parsing the input to extract relevant information and applying logical reasoning to determine the correct answer.
+
+Analyzing the Task:
+1. Object and Property Identification: Identify each object mentioned in the text along with its properties (like color) and position.
+
+2. Understanding the Question: Determine the specific nature of the question – whether it's about identifying the color of an object, counting objects based on a criterion, or understanding their spatial arrangement.
+
+3. Processing According to Question Type: Based on the question's nature, apply the appropriate logical reasoning:
+   - For color identification, locate the specific object and determine its color.
+   - For counting objects, enumerate the objects that meet the specified criteria.
+   - For spatial reasoning, analyze the relative positions of the objects.
+
+4. Matching with Options: Once the analysis is complete, match the result with the given options to find the correct answer.
+
+Constructing the Code Prompt:
+1. Extracting Object Properties: Parse the input text to create a list of objects with their associated properties and positions.
+
+2. Identifying the Question: Extract the specific question from the input text and determine its type (color identification, counting, or spatial reasoning).
+
+3. Listing Options: Extract the list of possible answers provided in the input text.
+
+4. [Important] Processing Logic:
+   - For color identification, find the target object and determine its color.
+   - For counting, iterate over the objects, count those that meet the criteria, and keep track of the count.
+   - For spatial reasoning, arrange the objects as described and deduce the answer based on their positions.
+
+5. Determining the Answer: Match the result of the logical processing with the options to identify the correct answer.
+
+6. Returning the Final Answer: Output the matched option as the final answer to the question.
+
+Code prompt:
+def solve_colored_objects(input_text):
+    # Step 1: Start by identifying the objects along with their associated properties, such as color and spatial positioning from the input text. Show the list of objects.
+    objects_list = extract_objects(input_text)
+    print("Objects and their properties:", objects_list)
+
+    # Step 2: Identify the specific question asked. Determine whether the question is about identifying the color of a specific object, counting objects of a certain color, or reasoning about the spatial arrangement of objects and output the question type.
+    question = extract_question(input_text)
+    print("Question specifics:", question)
+
+    # Step 3: Identify and list up available options provided in the input text.
+    options = input_text.split("\n")[-5:]
+
+    # Step 4: Process according to the question type and show what the question type is:
+    # If the question is about identifying color, identify and ouput the target object the question is asking for the color of. Determine and output its color. 
+    if question['type'] == 'identify_color':
+        print("Question type is = identify_color")
+        print(f"Identifying color for: {question['details']}")
+        target_object = target(objects_list, question['details'])
+        print(f"The question is asking for the color of : {target_object}")
+        pre_answer = extract_color(target_object, question['details'])
+        print(f"Identified color: {pre_answer}")
+
+    # If the question is about counting objects, identify and ouput the objects the question is asking for the number of. Go through each object in the list in steps and count each object. Show the counting steps. Output the final number of objects that meet the specified criteria (e.g., a specific color). 
+    elif question['type'] == 'count_objects':
+        print("Question type is = count_objects")
+        print(f"Counting objects for: {question['details']}")
+        print("Total iterations:", len(objects_list))
+        for i, object in enumerate(objects_list):
+            single_object_count = count_single_object(object, question['details'])
+            intermediate_count += single_object_count
+            print(f"Step ({i}) - {object}: {single_object_count}, Intermediate count: {intermediate_count}")
+        pre_answer = count_objects(objects_list, question['details'])
+        print(f"Objects count: {pre_answer}")
+
+    # If the question is about spatial reasoning, identify and ouput the relative positions the question is asking for. Arrange the objects from left to right and output the order. Determine the relative positions of objects and output the result.
+    elif question['type'] == 'spatial_reasoning':
+        print("Question type is = spatial_reasoning")
+        print(f"Applying spatial reasoning for: {question['details']}")
+        arranged_object = arrange_from_left_to_right(objects_list)
+        print(f"Arraged objects: {arranged_object})
+        pre_answer = spatial_reasoning(arranged_object, question['details'])
+        print(f"Spatial reasoning result: {pre_answer}")
+
+    # Step 5: Recall the identified options and match the outcome of Step 4 (the identified color, the count of objects, or the result of spatial reasoning) with the provided options to determine the correct answer.
+    answer = find_correct_option(pre_answer, options)
+    
+    # Step 6: Return the final answer chosen at Step 5.
+    return answer
+
+[Example 4]
+Example task instances:
+This SVG path element <path d="M 72.27,81.13 L 74.58,97.35 L 85.30,53.15 L 72.10,72.75 L 55.16,73.99 M 55.16,73.99 L 72.27,81.13"/> draws a
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle
+
+This SVG path element <path d="M 81.97,51.68 L 56.45,29.26 M 56.45,29.26 L 50.05,29.03 M 50.05,29.03 L 49.41,34.81 L 54.75,40.20 M 54.75,40.20 L 81.97,51.68"/> draws a
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle
+
+This SVG path element <path d="M 62.00,77.00 L 17.00,31.00 L 96.00,39.00 L 62.00,77.00"/> draws a
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle
+
+Output Format:
+'(A)', '(B)', '(C)', ...\Explanation:
+Explanation:
+This task involves analyzing SVG path elements to determine the shape that is being drawn. The path elements consist of a series of commands that define the movements and curves in the SVG image. By understanding these commands and their implications, we can identify the shape being drawn.
+
+Analyzing the Task:
+1. SVG Path Commands: The SVG path element contains commands like M (move to), L (line to), A (arc), etc., each of which contributes to the overall shape being drawn.
+
+2. Interpreting Path Commands: Each command in the path element corresponds to a specific action, such as moving to a point, drawing a line, or creating an arc. Understanding these commands is crucial to identifying the shape.
+
+3. Recognizing Geometric Shapes: Different combinations of path commands result in different geometric shapes like circles, triangles, rectangles, etc. We need to match the commands to the shapes they represent.
+
+Constructing the Code Prompt:
+1. Parsing SVG Path Element: Extract the path commands from the SVG path element provided in the task. This involves splitting the string and identifying each command.
+
+2. Processing Path Commands: Iterate over each command in the path element and execute the corresponding action. This involves:
+- Moving to a new point (M command).
+- Drawing a line to a point (L command).
+- Drawing an arc (A command).
+- Other commands as necessary.
+
+3. [Important] Tracking Coordinates: Keep track of the coordinates as the path commands are executed. This involves updating the current position based on the commands.
+
+4. Determining the Shape: After processing all commands, analyze the resulting path to determine the shape being drawn. This can be done by comparing the final path with the characteristics of known shapes.
+
+5. Matching with Provided Options: Compare the identified shape with the options provided in the task to select the correct answer.
+
+6. Returning the Result: Return the identified shape as the output in the specified format ('(A)', '(B)', '(C)', ...).
+
+By following these steps and accurately interpreting the SVG path commands, we can determine the shape being drawn and select the correct option from the given choices.
+
+Code prompt:

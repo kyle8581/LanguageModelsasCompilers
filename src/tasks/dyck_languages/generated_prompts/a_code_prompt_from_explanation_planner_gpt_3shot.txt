@@ -1,0 +1,31 @@
+def complete_dyck_languages(input_text):
+    # Step 1: Parse the input text to extract the sequence of parentheses.
+    parentheses_sequence = extract_parentheses(input_text)
+    print("Parentheses sequence:", parentheses_sequence)
+
+    # Step 2: Initialize a stack to keep track of opening parentheses that need closing.
+    stack = []
+
+    # Step 3: Iterate over each character in the sequence to handle opening and closing parentheses.
+    for i, char in enumerate(parentheses_sequence):
+        if char in ['(', '[', '{', '<']:
+            stack.append(char)
+            print(f"Step ({i}) - Pushed {char} to stack")
+        elif char in [')', ']', '}', '>']:
+            if len(stack) == 0:
+                print(f"Step ({i}) - No matching opening bracket for {char}")
+            else:
+                opening_bracket = stack.pop()
+                print(f"Step ({i}) - Matched {opening_bracket} with {char}")
+    
+    # Step 4: Check if the stack is empty after processing the entire sequence.
+    if len(stack) > 0:
+        print("Remaining unmatched brackets in stack:", stack)
+        # Step 5: Generate the necessary closing brackets to match the remaining opening brackets.
+        closing_brackets = generate_closing_brackets(stack)
+        print("Generated closing brackets:", closing_brackets)
+    else:
+        print("All brackets are properly matched.")
+
+    # Step 6: Return the generated closing brackets as the final answer.
+    return closing_brackets
