@@ -32,4 +32,18 @@ After changing the working directory to `src`, run `bash run.sh` to execute the 
 
 
 
+## Contact
+If you have any inquiries, please feel free to raise an issue or reach out to us via email at: mapoout@yonsei.ac.kr. We're here to assist you!
+
+## Citation
+
+If you find this useful, please consider citing our paper:
+```
+@article{chae2024language,
+  title={Language Models as Compilers: Simulating Pseudocode Execution Improves Algorithmic Reasoning in Language Models},
+  author={Chae, Hyungjoo and Kim, Yeonghyeon and Kim, Seungone and Ong, Kai Tzu-iunn and Kwak, Beong-woo and Kim, Moohyeon and Kim, Seonghwan and Kwon, Taeyoon and Chung, Jiwan and Yu, Youngjae and others},
+  journal={arXiv preprint arXiv:2404.02575},
+  year={2024}
+}
+```  
 
